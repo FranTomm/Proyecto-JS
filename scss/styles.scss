@@ -1,0 +1,37 @@
+@import "variables";
+
+body{
+    display: grid;
+    grid-template-columns: 20% auto;
+    grid-template-rows: 20% auto 15%;
+    grid-template-areas: "header header" "aside main" "footer footer";
+    grid-gap:10px;
+}
+
+header{
+    grid-area: header;
+    text-align: center;
+}
+
+aside{
+    grid-area: aside;
+    background-color: $soft;
+    font-size: 30px;
+    padding: 10px;
+}
+
+main{
+    grid-area: main;
+    background-color: $vibrant;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+}
+
+footer{
+    grid-area: footer;
+    color: white;
+    font-size: 25px;
+    background-image: linear-gradient(rgb(42, 42, 42),black);
+    padding: 10px;
+}
