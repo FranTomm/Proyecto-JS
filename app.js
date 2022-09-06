@@ -119,5 +119,68 @@ else{
     alert("Las fechas seleccionadas corresponden a temporada baja.");
 }
 let costo=calcularCosto(reserva1.tipo,reserva1.duracion(),reserva1.cantPersonas,nivelTemporada);
-let medioDePago=prompt(`El costo de su estadía será de $ ${costo}. Para confirmar su reserva solicitamos realizar un depósito del 30% del valor total de la reserva. El valor del depósito es de $ ${costo*0.3}. \n¿Cómo desea abonar?\n1-Tarjeta\n2-Transferencia.`);
-alert("A continuación sera redirigido a la página para realizar su pago.")
+alert(`El costo de su estadía será de $ ${costo}.`);
+
+/* Agrego esta sección para el desafío complementario de arrays. */
+/*----------------- servicios extra------------------------------*/
+const extras=[//array de objetos
+    {id:1,servicio:'Traslado desde el aeropuerto',tipoCosto:'fijo',valor:2500},
+    {id:2,servicio:'Traslado hacia el aeropuerto',tipoCosto:'fijo',valor:2500},
+    {id:3,servicio:'Guardería de equipaje',tipoCosto:'variable',valor:500},
+    {id:4,servicio:'Desayuno simple',tipoCosto:'variable',valor:800},
+    {id:5,servicio:'Desayuno continental',tipoCosto:'variable',valor:1600},
+    {id:6,servicio:'Lavandería',tipoCosto:'fijo',valor:1500}
+]
+
+function agregarExtras(extras,duracionEstadia){
+    const carrito=[];
+    alert('Ofrecemos una amplia gama de servicios adicionales para hacer tu estadía más cómoda...')
+    let extra=0;
+    let satisfied=false;
+    let duracion=0;
+    while(!satisfied){
+        extra=prompt('¿Desea agregar algún servicio adicional a su estadía?\n1 - Traslado desde el aeropuerto\n2 - Traslado hacia el aeropuerto\n3 - Guardería de equipaje\n4 - Desayuno simple\n5 - Desayuno continental\n6 - Lavandería\n7-no, gracias.')
+        if (extra==7){
+            satisfied=true;
+        }
+        else{
+            if(extra==3){
+                duracion=prompt('ingrese el número de días que necesitará guardar su equipaje en la guardería.')
+            }
+            else{
+                duracion=duracionEstadia;
+            }
+            item=extras[extra-1]
+            if (item.tipoCosto=='variable'){
+                item.duracion=duracion;
+            }
+            carrito.push(item)
+            alert(`El servicio "${item.servicio}" fue agregado a su carrito.`)
+        }
+    }
+    return carrito
+}
+
+function calcularCostoAdicional(carrito,numPersonas){
+    let costo=0;
+    let numExtras=carrito.length;
+    if (numExtras>0){
+        for (i=0;i<numExtras;i++){
+            if(carrito[i].tipoCosto=='variable'){
+                costo=costo+carrito[i].valor*carrito[i].duracion*numPersonas;
+            }
+            else{
+                costo=costo+carrito[i].valor;//los costos fijos no se multiplican por la duracion ni por la cant de personas
+            }
+        }
+    }
+    return costo
+}
+
+/* ejecución de la parte de agregado de servicios extra */
+miCarrito=agregarExtras(extras,reserva1.duracion());
+costoAdicional=calcularCostoAdicional(miCarrito,reserva1.cantPersonas);
+let costoTotal=costo+costoAdicional;
+alert(`El costo adicional a pagar por los servicios seleccionados es de $ ${costoAdicional}.\nEl costo de la estadía sin servicios es de $ ${costo}.\nEl total a pagar es de $ ${costoTotal}.`);
+let medioDePago=prompt(`Para confirmar su reserva solicitamos realizar un depósito del 30% del valor total de la reserva. El valor del depósito es de $ ${costoTotal*0.3}. \n¿Cómo desea abonar?\n1-Tarjeta\n2-Transferencia.`);
+alert("A continuación sera redirigido a la página para realizar su pago.");
