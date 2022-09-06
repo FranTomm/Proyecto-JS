@@ -132,25 +132,42 @@ const extras=[//array de objetos
     {id:6,servicio:'Lavandería',tipoCosto:'fijo',valor:1500}
 ]
 
+//supongamos para practicar lo visto de arrays que si el número de personas es mayor que 4 no puedo ofrecerles el servicio de traslado desde o hacia el aeropuerto pero sí puedo ofrecerles una excursión en combi a pampalinda con costo fijo de $1000 por persona.
+if (reserva1.cantPersonas>4){
+    extras.splice(0,2);
+    extras.push({id:7,servicio:'Excusión en combi a Pampalinda con descuento.',tipoCosto:'fijo',valor:1000*reserva1.cantPersonas})
+}
+
 function agregarExtras(extras,duracionEstadia){
     const carrito=[];
     alert('Ofrecemos una amplia gama de servicios adicionales para hacer tu estadía más cómoda...')
     let extra=0;
     let satisfied=false;
     let duracion=0;
+    let listaServicios="";
+    const numExtras=extras.length;
+    for(i=0;i<numExtras;i++){
+        if(extras[i].tipoCosto=='variable'){
+            listaServicios=listaServicios+`${i+1} - ${extras[i].servicio}   $ ${extras[i].valor} por persona por día.\n`;
+        }
+        else{
+            listaServicios=listaServicios+`${i+1} - ${extras[i].servicio}   $ ${extras[i].valor}.\n`;
+        }
+    }
+    listaServicios=listaServicios+`${numExtras+1} - No, gracias.`;
     while(!satisfied){
-        extra=prompt('¿Desea agregar algún servicio adicional a su estadía?\n1 - Traslado desde el aeropuerto\n2 - Traslado hacia el aeropuerto\n3 - Guardería de equipaje\n4 - Desayuno simple\n5 - Desayuno continental\n6 - Lavandería\n7-no, gracias.')
-        if (extra==7){
+        extra=prompt(`¿Desea agregar algún servicio adicional a su estadía?\n ${listaServicios}`)
+        if (extra==numExtras+1){
             satisfied=true;
         }
         else{
-            if(extra==3){
+            item=extras[extra-1]
+            if(item.id==3){
                 duracion=prompt('ingrese el número de días que necesitará guardar su equipaje en la guardería.')
             }
             else{
                 duracion=duracionEstadia;
             }
-            item=extras[extra-1]
             if (item.tipoCosto=='variable'){
                 item.duracion=duracion;
             }
