@@ -156,7 +156,7 @@ function agregarExtras(extras,duracionEstadia){
     }
     listaServicios=listaServicios+`${numExtras+1} - No, gracias.`;
     while(!satisfied){
-        extra=prompt(`¿Desea agregar algún servicio adicional a su estadía?\n ${listaServicios}`)
+        extra=prompt(`¿Desea agregar algún servicio adicional a su estadía?\n${listaServicios}`)
         if (extra==numExtras+1){
             satisfied=true;
         }
