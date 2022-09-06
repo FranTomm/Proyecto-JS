@@ -135,7 +135,7 @@ const extras=[//array de objetos
 //supongamos para practicar lo visto de arrays que si el número de personas es mayor que 4 no puedo ofrecerles el servicio de traslado desde o hacia el aeropuerto pero sí puedo ofrecerles una excursión en combi a pampalinda con costo fijo de $1000 por persona.
 if (reserva1.cantPersonas>4){
     extras.splice(0,2);
-    extras.push({id:7,servicio:'Excusión en combi a Pampalinda con descuento.',tipoCosto:'fijo',valor:1000*reserva1.cantPersonas})
+    extras.push({id:7,servicio:'Excursión en combi a Pampalinda con descuento.',tipoCosto:'fijo',valor:1000*reserva1.cantPersonas})
 }
 
 function agregarExtras(extras,duracionEstadia){
@@ -182,12 +182,24 @@ function calcularCostoAdicional(carrito,numPersonas){
     let costo=0;
     let numExtras=carrito.length;
     if (numExtras>0){
+        //se puede recorrer el carrito con un for común
+        /*
         for (i=0;i<numExtras;i++){
             if(carrito[i].tipoCosto=='variable'){
                 costo=costo+carrito[i].valor*carrito[i].duracion*numPersonas;
             }
             else{
                 costo=costo+carrito[i].valor;//los costos fijos no se multiplican por la duracion ni por la cant de personas
+            }
+        }
+        */
+        //también se puede recorrer el carrito con un for... of ...
+        for (item of carrito){
+            if(item.tipoCosto=='variable'){
+                costo=costo+item.valor*item.duracion*numPersonas;
+            }
+            else{
+                costo=costo+item.valor;//los costos fijos no se multiplican por la duracion ni por la cant de personas
             }
         }
     }
