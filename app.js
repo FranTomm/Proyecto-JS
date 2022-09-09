@@ -16,15 +16,6 @@ class Reserva{
     }
 }
 
-function checkIfValid(number,rangeMin,rangeMax){//chequear si un numero ingresado está dentro de un rango
-    if(number>=rangeMin && number<=rangeMax){
-        return true;
-    }
-    else{
-        return false;    
-    }
-}
-
 function consultarDatosReserva(){
     let tipo=prompt("Ofrecemos dos tipos de alojamiento, un monoambiente o una cabaña alpina, ingrese el tipo de alojamiento que desea reservar:\n- 1 monoambiente\n- 2 cabaña");
     if (tipo==1){
@@ -34,9 +25,11 @@ function consultarDatosReserva(){
         capacidadMax=6;
     }
     let cantPersonas=0;
-    while(!(checkIfValid(cantPersonas,1,capacidadMax))){
+    let checkIfValid=false;
+    while(!(checkIfValid)){
         cantPersonas=prompt(`Ingrese el número de personas que necesitan alojamiento. La capacidad máxima del tipo de alojamiento elegido es ${capacidadMax}`);
-        if(!checkIfValid(cantPersonas,1,capacidadMax)){
+        checkIfValid=(cantPersonas>=1 && cantPersonas<=capacidadMax);
+        if(!checkIfValid){
             alert("El número de personas ingresado no es válido.")
         }
     }
@@ -57,17 +50,10 @@ function confirmarDatosReserva(nombre,reserva){
     }
     let confirmacion=prompt(`Los datos de su reserva son los siguientes:\nNombre: ${nombre}\nCantidad de personas: ${reserva.cantPersonas}\nTipo de alojamiento: ${tipoAlojamiento}\nFecha de entrada: ${reserva.fechaEntrada.getDate()}/${reserva.fechaEntrada.getMonth()+1}/${reserva.fechaEntrada.getYear()}\nFecha de salida: ${reserva.fechaSalida.getDate()}/${reserva.fechaSalida.getMonth()+1}/${reserva.fechaSalida.getYear()}\nDuración de la estadía: ${reserva.duracion()} días.\n¿Son correctos estos datos?\n- Si\n- No`).toLowerCase();
     //alert(`su respuesta fue ${confirmacion}.`)//para debuggear
-    if (confirmacion=="si" || confirmacion=="sí"){
-        return true
-    }
-    else{
-        return false
-    }
+    return (confirmacion=="si" || confirmacion=="sí")
 }
 
-/*function chequearDisponibilidad(fecha){//mas adelante cuando tenga el calendario resolvere este tema.
-    return disponibilidad
-}*/
+//mas adelante cuando implemente el calendario resolvere el tema de chequear disponibilidad de las fechas seleccionadas.
 
 function determinarTemporada(fecha){
     mes=fecha.getMonth()+1;
@@ -162,11 +148,11 @@ function agregarExtras(extras,duracionEstadia){
         }
         else{
             item=extras[extra-1]
-            if(item.id==3){
-                duracion=prompt('ingrese el número de días que necesitará guardar su equipaje en la guardería.')
-            }
-            else{
-                duracion=duracionEstadia;
+            switch(item.id){
+                case 3:
+                    duracion=prompt('ingrese el número de días que necesitará guardar su equipaje en la guardería.')
+                default:
+                    duracion=duracionEstadia;
             }
             if (item.tipoCosto=='variable'){
                 item.duracion=duracion;
@@ -182,18 +168,6 @@ function calcularCostoAdicional(carrito,numPersonas){
     let costo=0;
     let numExtras=carrito.length;
     if (numExtras>0){
-        //se puede recorrer el carrito con un for común
-        /*
-        for (i=0;i<numExtras;i++){
-            if(carrito[i].tipoCosto=='variable'){
-                costo=costo+carrito[i].valor*carrito[i].duracion*numPersonas;
-            }
-            else{
-                costo=costo+carrito[i].valor;//los costos fijos no se multiplican por la duracion ni por la cant de personas
-            }
-        }
-        */
-        //también se puede recorrer el carrito con un for... of ...
         for (item of carrito){
             if(item.tipoCosto=='variable'){
                 costo=costo+item.valor*item.duracion*numPersonas;
