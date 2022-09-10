@@ -110,18 +110,18 @@ alert(`El costo de su estadía será de $ ${costo}.`);
 /* Agrego esta sección para el desafío complementario de arrays. */
 /*----------------- servicios extra------------------------------*/
 const extras=[//array de objetos
-    {id:1,servicio:'Traslado desde el aeropuerto',tipoCosto:'fijo',valor:2500},
-    {id:2,servicio:'Traslado hacia el aeropuerto',tipoCosto:'fijo',valor:2500},
-    {id:3,servicio:'Guardería de equipaje',tipoCosto:'variable',valor:500},
-    {id:4,servicio:'Desayuno simple',tipoCosto:'variable',valor:800},
-    {id:5,servicio:'Desayuno continental',tipoCosto:'variable',valor:1600},
-    {id:6,servicio:'Lavandería',tipoCosto:'fijo',valor:1500}
+    {id:1,nombre:'Traslado desde el aeropuerto',tipoCosto:'fijo',valor:2500},
+    {id:2,nombre:'Traslado hacia el aeropuerto',tipoCosto:'fijo',valor:2500},
+    {id:3,nombre:'Guardería de equipaje',tipoCosto:'variable',valor:500},
+    {id:4,nombre:'Desayuno simple',tipoCosto:'variable',valor:800},
+    {id:5,nombre:'Desayuno continental',tipoCosto:'variable',valor:1600},
+    {id:6,nombre:'Lavandería',tipoCosto:'fijo',valor:1500}
 ]
 
 //supongamos para practicar lo visto de arrays que si el número de personas es mayor que 4 no puedo ofrecerles el servicio de traslado desde o hacia el aeropuerto pero sí puedo ofrecerles una excursión en combi a pampalinda con costo fijo de $1000 por persona.
 if (reserva1.cantPersonas>4){
     extras.splice(0,2);
-    extras.push({id:7,servicio:'Excursión en combi a Pampalinda con descuento.',tipoCosto:'fijo',valor:1000*reserva1.cantPersonas})
+    extras.push({id:7,nombre:'Excursión en combi a Pampalinda con descuento.',tipoCosto:'fijo',valor:1000*reserva1.cantPersonas})
 }
 
 function agregarExtras(extras,duracionEstadia){
@@ -134,10 +134,10 @@ function agregarExtras(extras,duracionEstadia){
     const numExtras=extras.length;
     for(i=0;i<numExtras;i++){
         if(extras[i].tipoCosto=='variable'){
-            listaServicios=listaServicios+`${i+1} - ${extras[i].servicio}   $ ${extras[i].valor} por persona por día.\n`;
+            listaServicios=listaServicios+`${i+1} - ${extras[i].nombre}   $ ${extras[i].valor} por persona por día.\n`;
         }
         else{
-            listaServicios=listaServicios+`${i+1} - ${extras[i].servicio}   $ ${extras[i].valor}.\n`;
+            listaServicios=listaServicios+`${i+1} - ${extras[i].nombre}   $ ${extras[i].valor}.\n`;
         }
     }
     listaServicios=listaServicios+`${numExtras+1} - No, gracias.`;
@@ -158,7 +158,7 @@ function agregarExtras(extras,duracionEstadia){
                 item.duracion=duracion;
             }
             carrito.push(item)
-            alert(`El servicio "${item.servicio}" fue agregado a su carrito.`)
+            alert(`El servicio "${item.nombre}" fue agregado a su carrito.`)
         }
     }
     return carrito
@@ -187,3 +187,15 @@ let costoTotal=costo+costoAdicional;
 alert(`El costo adicional a pagar por los servicios seleccionados es de $ ${costoAdicional}.\nEl costo de la estadía sin servicios es de $ ${costo}.\nEl total a pagar es de $ ${costoTotal}.`);
 let medioDePago=prompt(`Para confirmar su reserva solicitamos realizar un depósito del 30% del valor total de la reserva. El valor del depósito es de $ ${costoTotal*0.3}. \n¿Cómo desea abonar?\n1-Tarjeta\n2-Transferencia.`);
 alert("A continuación sera redirigido a la página para realizar su pago.");
+
+/*------------------- funciones de orden superior--------------------------- */
+/* implemento un buscador de servicios */
+function buscarServicio(servicios){
+    let textoABuscar=prompt("Introduzca el servicio que desea buscar.").toLowerCase();
+    const resultado=servicios.filter(servicio=>servicio.nombre.toLowerCase().includes(textoABuscar));
+    const listaNombres=resultado.map(servicio=>`${servicio.id} - ${servicio.nombre}`);
+    let output=prompt(`Estos son los resultados que tenemos para tu busqueda:\n${listaNombres.join('\n')}\nIntroduzca el número del servicio que desea contratar.`);
+    return output
+}
+
+let servicio=buscarServicio(extras);
