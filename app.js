@@ -142,12 +142,13 @@ function agregarExtras(extras,duracionEstadia){
     }
     listaServicios=listaServicios+`${numExtras+1} - No, gracias.`;
     while(!satisfied){
-        extra=prompt(`¿Desea agregar algún servicio adicional a su estadía?\n${listaServicios}`)
-        if (extra==numExtras+1){
+        more=prompt(`¿Desea agregar algún servicio adicional a su estadía?\n- Si\n- No`)
+        if (more.toLowerCase()=='no'){
             satisfied=true;
         }
         else{
-            item=extras[extra-1]
+            let index=buscarServicio(extras);
+            item=extras[index]
             switch(item.id){
                 case 3:
                     duracion=prompt('ingrese el número de días que necesitará guardar su equipaje en la guardería.')
@@ -191,11 +192,12 @@ alert("A continuación sera redirigido a la página para realizar su pago.");
 /*------------------- funciones de orden superior--------------------------- */
 /* implemento un buscador de servicios */
 function buscarServicio(servicios){
-    let textoABuscar=prompt("Introduzca el servicio que desea buscar.").toLowerCase();
-    const resultado=servicios.filter(servicio=>servicio.nombre.toLowerCase().includes(textoABuscar));
-    const listaNombres=resultado.map(servicio=>`${servicio.id} - ${servicio.nombre}`);
-    let output=prompt(`Estos son los resultados que tenemos para tu busqueda:\n${listaNombres.join('\n')}\nIntroduzca el número del servicio que desea contratar.`);
+    let output=0;
+    while(output==0){
+        let textoABuscar=prompt("Introduzca el servicio que desea buscar. Ej: 'Desayuno','Traslado' o 'Lavandería'").toLowerCase();
+        const resultado=servicios.filter(servicio=>servicio.nombre.toLowerCase().includes(textoABuscar));
+        const listaNombres=resultado.map(servicio=>`${servicios.indexOf(servicio)} - ${servicio.nombre}`);
+        output=prompt(`Estos son los resultados que tenemos para tu busqueda:\n${listaNombres.join('\n')}\nIntroduzca el número del servicio que desea contratar o ingrese '-1' para volver a buscar.`);
+    }
     return output
 }
-
-let servicio=buscarServicio(extras);
