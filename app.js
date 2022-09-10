@@ -133,12 +133,7 @@ function agregarExtras(extras,duracionEstadia){
     let listaServicios="";
     const numExtras=extras.length;
     for(i=0;i<numExtras;i++){
-        if(extras[i].tipoCosto=='variable'){
-            listaServicios=listaServicios+`${i+1} - ${extras[i].nombre}   $ ${extras[i].valor} por persona por día.\n`;
-        }
-        else{
-            listaServicios=listaServicios+`${i+1} - ${extras[i].nombre}   $ ${extras[i].valor}.\n`;
-        }
+        listaServicios=listaServicios+`${i+1} - ${extras[i].nombre}  ${mostrarPrecio(extras[i])}.\n`;
     }
     listaServicios=listaServicios+`${numExtras+1} - No, gracias.`;
     while(!satisfied){
@@ -194,10 +189,19 @@ alert("A continuación sera redirigido a la página para realizar su pago.");
 function buscarServicio(servicios){
     let output=0;
     while(output==0){
-        let textoABuscar=prompt("Introduzca el servicio que desea buscar. Ej: 'Desayuno','Traslado' o 'Lavandería'").toLowerCase();
+        let textoABuscar=prompt("Introduzca el servicio que desea buscar. Ej: 'Desayuno','Traslado' o 'Lavandería'.\nPresione directamente 'Aceptar' si desea ver la lista completa de productos.").toLowerCase();
         const resultado=servicios.filter(servicio=>servicio.nombre.toLowerCase().includes(textoABuscar));
-        const listaNombres=resultado.map(servicio=>`${servicios.indexOf(servicio)} - ${servicio.nombre}`);
-        output=prompt(`Estos son los resultados que tenemos para tu busqueda:\n${listaNombres.join('\n')}\nIntroduzca el número del servicio que desea contratar o ingrese '-1' para volver a buscar.`);
+        const listaNombres=resultado.map(servicio=>`${servicios.indexOf(servicio)+1} - ${servicio.nombre} - ${mostrarPrecio(servicio)}`);
+        output=prompt(`Estos son los resultados que tenemos para tu busqueda:\n${listaNombres.join('\n')}\nIntroduzca el número del servicio que desea contratar o ingrese '0' para volver a buscar.`);
     }
-    return output
+    return output-1;
+}
+
+function mostrarPrecio(servicio){
+    if (servicio.tipoCosto=='variable'){
+        return `$ ${servicio.valor} por día por persona`
+    }
+    else{
+        return `$ ${servicio.valor}`
+    }
 }
