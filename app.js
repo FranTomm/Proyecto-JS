@@ -110,24 +110,23 @@ alert(`El costo de su estadía será de $ ${costo}.`);
 /* Agrego esta sección para el desafío complementario de arrays. */
 /*----------------- servicios extra------------------------------*/
 const extras=[//array de objetos
-    {id:1,nombre:'Traslado desde el aeropuerto',tipoCosto:'fijo',valor:2500},
-    {id:2,nombre:'Traslado hacia el aeropuerto',tipoCosto:'fijo',valor:2500},
-    {id:3,nombre:'Guardería de equipaje',tipoCosto:'variable',valor:500},
-    {id:4,nombre:'Desayuno simple',tipoCosto:'variable',valor:800},
-    {id:5,nombre:'Desayuno continental',tipoCosto:'variable',valor:1600},
-    {id:6,nombre:'Lavandería',tipoCosto:'fijo',valor:1500}
+    {id:1,nombre:'Traslado desde el aeropuerto',tipoCosto:'fijo',valor:2500,img:"../media/servicios/traslado_desde.jpg"},
+    {id:2,nombre:'Traslado hacia el aeropuerto',tipoCosto:'fijo',valor:2500,img:"../media/servicios/traslado_hacia.jpg"},
+    {id:3,nombre:'Guardería de equipaje',tipoCosto:'variable',valor:500,img:"../media/servicios/guarderia_equipaje.jpg"},
+    {id:4,nombre:'Desayuno simple',tipoCosto:'variable',valor:800,img:"../media/servicios/desayuno_simple.jpg"},
+    {id:5,nombre:'Desayuno continental',tipoCosto:'variable',valor:1600,img:"../media/servicios/desayuno_continental.jpg"},
+    {id:6,nombre:'Lavandería',tipoCosto:'fijo',valor:1500,img:"../media/servicios/lavanderia.jpg"}
 ]
 
 //supongamos para practicar lo visto de arrays que si el número de personas es mayor que 4 no puedo ofrecerles el servicio de traslado desde o hacia el aeropuerto pero sí puedo ofrecerles una excursión en combi a pampalinda con costo fijo de $1000 por persona.
 if (reserva1.cantPersonas>4){
     extras.splice(0,2);
-    extras.push({id:7,nombre:'Excursión en combi a Pampalinda con descuento.',tipoCosto:'fijo',valor:1000*reserva1.cantPersonas})
+    extras.push({id:7,nombre:'Excursión en combi a Pampalinda con descuento.',tipoCosto:'fijo',valor:1000*reserva1.cantPersonas,img:"../media/servicios/Tronador.jpg"})
 }
 
 function agregarExtras(extras,duracionEstadia){
     const carrito=[];
     alert('Ofrecemos una amplia gama de servicios adicionales para hacer tu estadía más cómoda...')
-    let extra=0;
     let satisfied=false;
     let duracion=0;
     let listaServicios="";
@@ -205,3 +204,29 @@ function mostrarPrecio(servicio){
         return `$ ${servicio.valor}`
     }
 }
+
+/*---------------------------Desafío complementario de DOM-----------------------------*/
+//creo una función que muestre los servicios extra solicitados en pantalla a modo de carrito.
+// DOM
+
+function renderizar(array) {
+    section.innerHTML = ""//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
+
+    array.forEach((servicio)=> {
+            let cardClonada = card.cloneNode(true)
+            section.appendChild(cardClonada)
+            //cardClonada.children nos da un "array" con los elementos html dentro del elemento card, en este caso [h3,img,p]
+            // Nombre del producto
+            cardClonada.children[0].innerText = servicio.nombre
+            //Img
+            cardClonada.children[1].src = servicio.img
+            // Precio
+            cardClonada.children[2].innerText = mostrarPrecio(servicio)  
+        }
+    )
+}
+
+let section = document.getElementById("carrito")
+let temp = document.querySelector("template")
+let card = temp.content.querySelector("div")
+renderizar(miCarrito)
