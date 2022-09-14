@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&family=Roboto&family=Roboto+Condensed&family=Seaweed+Script&display=swap');
 /* color palette */
 
 $dark: #411530;
@@ -6,5 +7,7 @@ $soft:#F5C7A9;
 $light:#F5E8E4;
 
 /* fonts */
-$simple:'Inter';
-$emphasis:'Helvética';
+$simple:'Roboto';
+$narrow:'Roboto Condensed';
+$title:'Seaweed Script';//'Bushscript BT';
+$emphasis:'Lato'

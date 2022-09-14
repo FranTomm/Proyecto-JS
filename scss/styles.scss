@@ -1,18 +1,13 @@
 @import "variables";
 @import "cards";
-
+@import "header";
 body{
     display: grid;
     grid-template-columns: 20% auto;
     grid-template-rows: 300px auto 200px;
     grid-template-areas: "header header" "aside main" "footer footer";
     grid-gap:10px;
-}
-
-header{
-    grid-area: header;
-    text-align: center;
-    font-size: 30px;
+    font-family: $simple;
 }
 
 aside{
