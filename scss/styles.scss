@@ -4,7 +4,7 @@
 body{
     display: grid;
     grid-template-columns: 20% auto;
-    grid-template-rows: 300px auto 200px;
+    grid-template-rows: 250px auto 200px;
     grid-template-areas: "header header" "aside main" "footer footer";
     grid-gap:10px;
     font-family: $simple;
@@ -14,7 +14,30 @@ aside{
     grid-area: aside;
     background-color: $soft;
     font-size: 30px;
+    color: white;
+    text-shadow: 0 0 5px rgba(0,0,0,50%);
+    text-decoration: none;
     padding: 10px;
+    background-image: url("../media/brc.jpg");    
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-attachment: fixed;
+    div{
+        background-color: $soft_transparent;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    a{
+        color: white;
+        text-decoration: none;
+        &:hover{
+            color: $soft;
+        }
+    }
 }
 
 main{
@@ -22,7 +45,8 @@ main{
     background-color: $vibrant;
     color: white;
     font-size: 25px;
-    padding: 10px;
+    padding: 25px;
+    padding-top: 10px;
 }
 
 footer{
@@ -30,5 +54,9 @@ footer{
     color: white;
     font-size: 25px;
     background-image: linear-gradient(rgb(42, 42, 42),black);
-    padding: 10px;
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
 }
