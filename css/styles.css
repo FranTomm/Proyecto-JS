@@ -98,7 +98,7 @@ header a:hover {
 
 body {
   display: grid;
-  grid-template-columns: 20% auto;
+  grid-template-columns: 500px auto;
   grid-template-rows: 250px auto 200px;
   grid-template-areas: "header header" "aside main" "footer footer";
   grid-gap: 10px;
@@ -133,6 +133,30 @@ aside a {
 }
 aside a:hover {
   color: #F5C7A9;
+}
+aside form {
+  font-size: 20px;
+}
+aside form div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+aside form .form-check {
+  background-color: rgba(0, 0, 0, 0);
+}
+aside form .buttons {
+  padding: 10px;
+}
+aside form .buttons .btn-primary {
+  background-color: #D1512D;
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+}
+aside form .buttons .btn-secondary {
+  color: black;
+  padding: 10px;
 }
 
 main {

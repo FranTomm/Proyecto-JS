@@ -3,7 +3,7 @@
 @import "header";
 body{
     display: grid;
-    grid-template-columns: 20% auto;
+    grid-template-columns: 500px auto;
     grid-template-rows: 250px auto 200px;
     grid-template-areas: "header header" "aside main" "footer footer";
     grid-gap:10px;
@@ -36,6 +36,30 @@ aside{
         text-decoration: none;
         &:hover{
             color: $soft;
+        }
+    }
+    form{
+        font-size: 20px;
+        div{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        .form-check{
+            background-color: rgba(0,0,0,0%);
+        }
+        .buttons{
+            padding: 10px;
+            .btn-primary{
+                background-color: $vibrant;
+                color:white;
+                font-weight: 600;
+                padding: 10px;
+            }
+            .btn-secondary{
+                color:black;
+                padding: 10px;
+            }
         }
     }
 }
