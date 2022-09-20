@@ -84,7 +84,7 @@ function calcularCosto(tipo,duracion,cantPersonas,nivelTemporada){
 }
 
 /*----------aquí comienza la ejecucion de la página-----------*/
-let confirmaReserva=false;
+/*let confirmaReserva=false;
 let nombre=saludar();
 let reserva1=new Reserva(0,0,0,0);//solo lo inicializo.
 while(!confirmaReserva){
@@ -105,7 +105,7 @@ else{
     alert("Las fechas seleccionadas corresponden a temporada baja.");
 }
 let costo=calcularCosto(reserva1.tipo,reserva1.duracion(),reserva1.cantPersonas,nivelTemporada);
-alert(`El costo de su estadía será de $ ${costo}.`);
+alert(`El costo de su estadía será de $ ${costo}.`);*/
 
 /* Agrego esta sección para el desafío complementario de arrays. */
 /*----------------- servicios extra------------------------------*/
@@ -221,7 +221,9 @@ function renderizar(array) {
             //Img
             cardClonada.children[1].src = servicio.img
             // Precio
-            cardClonada.children[2].innerText = mostrarPrecio(servicio)  
+            cardClonada.children[2].innerText = mostrarPrecio(servicio)
+            //Botón agregar al carrito
+            cardClonada.children[3].id = "button-"+servicio.id  
         }
     )
 }

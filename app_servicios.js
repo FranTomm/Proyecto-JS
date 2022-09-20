@@ -28,7 +28,9 @@ function renderizar(array) {
             //Img
             cardClonada.children[1].src = servicio.img
             // Precio
-            cardClonada.children[2].innerText = mostrarPrecio(servicio)  
+            cardClonada.children[2].innerText = mostrarPrecio(servicio)
+            //Botón agregar al carrito
+            cardClonada.children[3].id = "button-"+servicio.id
         }
     )
 }
