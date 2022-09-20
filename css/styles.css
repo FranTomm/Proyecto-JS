@@ -32,6 +32,12 @@
 .card p {
   text-align: center;
 }
+.card button {
+  background-color: rgb(4, 119, 181);
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}
 
 h1 {
   font-family: "Seaweed Script";

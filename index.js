@@ -209,7 +209,7 @@ function mostrarPrecio(servicio){
 //creo una función que muestre los servicios extra solicitados en pantalla a modo de carrito.
 // DOM
 
-function renderizar(array) {
+function renderizar(array,section,card) {
     section.innerHTML = ""//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
 
     array.forEach((servicio)=> {
@@ -231,4 +231,4 @@ function renderizar(array) {
 let section = document.getElementById("carrito")
 let temp = document.querySelector("template")
 let card = temp.content.querySelector("div")
-renderizar(miCarrito)
+renderizar(miCarrito,section,card)
