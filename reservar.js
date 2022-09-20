@@ -83,7 +83,7 @@ function parseDate(string){
 }
 
 function renderizarReserva(reserva,section,card) {
-    section.innerHTML = ""//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
+    section.innerHTML = '<template id="templateReserva"><div><h4>Datos de contacto</h4><p>Responsable de la reserva:</p><p>email: (a esta dirección enviaremos la confirmación de tu reserva)</p><h4>Datos de la reserva:</h4><p>Tipo de alojamiento:</p><p>Número de Personas:</p><p>Fecha de Ingreso:</p><p>Fecha de Egreso:</p><p>Duración de la estadía:</p><p>Las fechas seleccionadas corresponden a temporada alta/baja.</p><p>Si los datos proporcionados no son correctos, por favor actualice la página y vuelva a rellenar el formulario.</p><h4>Facturación</h4><p>Costo estadía:</p><p>Costo fijo limpieza:</p><p>Total:</p></div></template>'//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
     let cardClonada = card.cloneNode(true)
     section.appendChild(cardClonada)
     const costos=calcularCosto(reserva.tipo,reserva.duracion(),reserva.cantPersonas,reserva.nivelTemporada())
