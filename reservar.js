@@ -98,7 +98,11 @@ function renderizarReserva(reserva,section,card) {
     cardClonada.children[5].innerText = "Número de personas: "+reserva.cantPersonas;
     cardClonada.children[6].innerText = "Fecha de ingreso: "+reserva.fechaEntrada.toLocaleDateString();
     cardClonada.children[7].innerText = "Fecha de egreso: "+reserva.fechaSalida.toLocaleDateString();
-    cardClonada.children[8].innerText = "Duración de la estadía: "+reserva.duracion()+"\n¡Por haber seleccionado mas de 7 días accedes a un 20% de descuento en el costo de tu estadía!";
+    let textoDuracion="Duración de la estadía: "+reserva.duracion()
+    if(descuento){
+        textoDuracion=textoDuracion+"\n¡Por haber seleccionado mas de 7 días accedes a un 20% de descuento en el costo de tu estadía!"
+    }
+    cardClonada.children[8].innerText = textoDuracion;
     cardClonada.children[9].innerText = "Las fechas seleccionadas corresponden a temporada "+reserva1.determinarTemporada();
     if (descuento){
         dcto=0.2;//total del descuento
