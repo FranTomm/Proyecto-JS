@@ -23,16 +23,6 @@
         </navbar>    
       </header>
     <main>
-        <!--<h3>Resultados de la búsqueda:</h3>
-        <section id="rdosBusqueda" class="container">
-            <template>
-                <div class="card">
-                    <h3>Servicio nombre</h3>
-                    <img src="../media/servicios/traslado_desde.jpg" alt="servicio">
-                    <p>precio</p>
-                </div>
-            </template>
-        </section>-->
         <h3>Tu reserva:</h3>
         <section id="reserva" class="container">
             <template id="templateReserva">
@@ -52,6 +42,17 @@
                     <p>Costo estadía:</p>
                     <p>Costo fijo limpieza:</p>
                     <p>Total:</p>
+                </div>
+            </template>
+        </section>
+        <h3>Resultados de la búsqueda:</h3>
+        <section id="rdosBusqueda" class="container">
+            <template>
+                <div class="card">
+                    <h3>Servicio nombre</h3>
+                    <img src="../media/servicios/traslado_desde.jpg" alt="servicio">
+                    <p>precio</p>
+                    <button class="button btn btn-primary">Añadir al carrito</button>
                 </div>
             </template>
         </section>
@@ -121,6 +122,20 @@
                     <input class="button btn btn-primary col-5 col-sm-3 col-lg-3" type="submit" value="Reservar">
                 </div>      
             </fieldset>         
+        </form>
+        <p>Además ofrecemos una amplia gama de servicios para hacer tu estadía mas cómoda</p>
+        <form class="formBusqueda" action="" method="GET" enctype="multipart/form-data">
+            <fieldset class="row">
+                <legend>
+                    Buscar servicios extra
+                </legend>
+                <div>
+                    <!--<label for="textoBuscar" class="form-label"></label>-->
+                    <input type="text" class="form-control" id="textoBuscar" placeholder="Texto a buscar">
+                </div>
+                <div class="buttons mb-3 d-grid gap-2 d-flex justify-content-center justify-content-sm-end">
+                    <input class="button btn btn-primary col-5 col-sm-3 col-lg-3" type="submit" value="Buscar">
+                </div> 
         </form>
     </aside>
     <footer>

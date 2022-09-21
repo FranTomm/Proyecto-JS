@@ -65,6 +65,8 @@ function validarFormulario(e) {
     }
     const fechaIngreso = parseDate(fechaEntrada.value)
     const fechaEgreso = parseDate(fechaSalida.value)
+    //en este punto se podría chequear la validez de las fechas seleccionadas.
+    //tambien se podría chequear si la cantidad de personas no supera la cantidad máxima del alojamiento.
     reserva1=new Reserva(nombre.value,apellido.value,email.value,tipo,fechaIngreso,fechaEgreso,cantPersonas.value)
     //Pinto la reserva realizada en el HTML usando DOM
     let section = document.getElementById("reserva");
@@ -130,4 +132,76 @@ function calcularCosto(tipo,duracion,cantPersonas,nivelTemporada){
         costoVariable=costoVariable*0.8; //descuento del 20% si se quedan mas de una semana
     }
     return [costoVariable,costoFijo,costoFijo+costoVariable*duracion];
+}
+/* Agrego esta sección para el desafío complementario de arrays. */
+/*----------------- servicios extra------------------------------*/
+const extras=[//array de objetos
+    {id:1,nombre:'Traslado desde el aeropuerto',tipoCosto:'fijo',valor:2500,img:"../media/servicios/traslado_desde.jpg"},
+    {id:2,nombre:'Traslado hacia el aeropuerto',tipoCosto:'fijo',valor:2500,img:"../media/servicios/traslado_hacia.jpg"},
+    {id:3,nombre:'Guardería de equipaje',tipoCosto:'variable',valor:500,img:"../media/servicios/guarderia_equipaje.jpg"},
+    {id:4,nombre:'Desayuno simple',tipoCosto:'variable',valor:800,img:"../media/servicios/desayuno_simple.jpg"},
+    {id:5,nombre:'Desayuno continental',tipoCosto:'variable',valor:1600,img:"../media/servicios/desayuno_continental.jpg"},
+    {id:6,nombre:'Lavandería',tipoCosto:'fijo',valor:1500,img:"../media/servicios/lavanderia.jpg"}
+]
+
+//supongamos para practicar lo visto de arrays que si el número de personas es mayor que 4 no puedo ofrecerles el servicio de traslado desde o hacia el aeropuerto pero sí puedo ofrecerles una excursión en combi a pampalinda con costo fijo de $1000 por persona.
+if (reserva1.cantPersonas>4){
+    extras.splice(0,2);
+    extras.push({id:7,nombre:'Excursión en combi a Pampalinda con descuento.',tipoCosto:'fijo',valor:1000*reserva1.cantPersonas,img:"../media/servicios/Tronador.jpg"})
+}
+
+/*-----------------------buscador de servicios extra-----------------------*/
+//obtener string a buscar del formulario mediante eventos
+const formularioBusqueda = document.querySelectorAll("form")[1];
+strBusqueda = document.querySelector("#textoBuscar");
+
+formularioBusqueda.addEventListener("submit", validarFormularioBusqueda);
+
+function validarFormularioBusqueda(e) {
+    e.preventDefault();
+    const resultados=buscarServicio(extras,strBusqueda.value)
+    //pinto los resultados en el dom
+    let section = document.getElementById("rdosBusqueda")
+    let temp = document.querySelectorAll("template")[1]
+    let card = temp.content.querySelector("div")
+    renderizar(resultados,section,card) 
+}
+
+/*------------------- funciones de orden superior--------------------------- */
+/* implemento un buscador de servicios */
+//creo un array con los servicios que cumplen el criterio de busqueda
+function buscarServicio(servicios,textoABuscar){
+    textoABuscar=textoABuscar.toLowerCase()
+    return servicios.filter(servicio=>servicio.nombre.toLowerCase().includes(textoABuscar));       
+}
+
+/*---------------------------Desafío complementario de DOM-----------------------------*/
+//creo una función que muestre los servicios extra solicitados en pantalla a modo de carrito.
+// DOM
+function renderizar(array,section,card) {
+    section.innerHTML = ""//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
+
+    array.forEach((servicio)=> {
+            let cardClonada = card.cloneNode(true)
+            section.appendChild(cardClonada)
+            //cardClonada.children nos da un "array" con los elementos html dentro del elemento card, en este caso [h3,img,p]
+            // Nombre del producto
+            cardClonada.children[0].innerText = servicio.nombre
+            //Img
+            cardClonada.children[1].src = servicio.img
+            // Precio
+            cardClonada.children[2].innerText = mostrarPrecio(servicio)
+            //Botón agregar al carrito
+            cardClonada.children[3].id = "button-"+servicio.id  
+        }
+    )
+}
+
+function mostrarPrecio(servicio){
+    if (servicio.tipoCosto=='variable'){
+        return `$ ${servicio.valor} por día por persona`
+    }
+    else{
+        return `$ ${servicio.valor}`
+    }
 }
