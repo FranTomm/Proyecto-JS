@@ -179,7 +179,7 @@ function buscarServicio(servicios,textoABuscar){
 //creo una función que muestre los servicios extra solicitados en pantalla a modo de carrito.
 // DOM
 function renderizar(array,section,card) {
-    section.innerHTML = ""//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
+    section.innerHTML = '<template>    <div class="card">        <h3>Servicio nombre</h3>        <img src="../media/servicios/traslado_desde.jpg" alt="servicio">        <p>precio</p>        <button class="button btn btn-primary">Añadir al carrito</button>    </div></template>'//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
 
     array.forEach((servicio)=> {
             let cardClonada = card.cloneNode(true)
