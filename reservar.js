@@ -68,11 +68,16 @@ function validarFormulario(e) {
     //en este punto se podría chequear la validez de las fechas seleccionadas.
     //tambien se podría chequear si la cantidad de personas no supera la cantidad máxima del alojamiento.
     reserva1=new Reserva(nombre.value,apellido.value,email.value,tipo,fechaIngreso,fechaEgreso,cantPersonas.value)
+    //guardo la reserva en el local storage
+    guardarReserva(reserva1,"reserva1");
+    //cargo la reserva del local storage //este paso es innecesario, ya que solo necesito recuperar la reserva del local storage cuando reseteo la página.
+    //lo agrego para practicar lo visto de JSON por ahora.
+    reservaCargada=cargarReserva("reserva1")
     //Pinto la reserva realizada en el HTML usando DOM
     let section = document.getElementById("reserva");
     let temp = document.querySelectorAll("template");
     let card = temp[0].content.querySelector("div");
-    renderizarReserva(reserva1,section,card)
+    renderizarReserva(reservaCargada,section,card)
 }
 
 function parseDate(string){
@@ -204,4 +209,26 @@ function mostrarPrecio(servicio){
     else{
         return `$ ${servicio.valor}`
     }
+}
+
+/*-------------Guardo la reserva en la base de datos simulada-----------*/
+function guardarReserva(reserva,key){
+    //guardo una reserva en la "base de batos" simulada.
+    const reservaStringified=JSON.stringify(reserva);
+    console.log(reservaStringified);
+    localStorage.setItem(key,reservaStringified);//guardo el item en el local storage con key="reserva" e item reserva stringified.
+}
+
+function cargarReserva(key){
+    //cargo una reserva de la "base de datos" simulada.
+    const reservaCargada = JSON.parse(localStorage.getItem(key));// cargo el item con key "key" del local storage.
+    //la reserva cargada tiene todos los atributos de la clase reserva pero NO TIENE los métodos de la clase
+    //preguntar en clase si hay una forma más elegante de devolverle sus métodos.
+    //creo un objeto reserva con los atributos de la reserva cargada.
+    //los elementos tipo "date" requieren un tratamiento especial porque al usar stringify se transformaron en strings
+    const fechaEnt=new Date(reservaCargada.fechaEntrada);
+    const fechaSal=new Date(reservaCargada.fechaSalida);
+    reserva=new Reserva(reservaCargada.nombre,reservaCargada.apellido,reservaCargada.email,reservaCargada.tipo,fechaEnt,fechaSal,reservaCargada.cantPersonas);
+    console.log(reserva);
+    return reserva;
 }
