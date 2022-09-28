@@ -57,7 +57,9 @@ function renderizar(array,section,card) {
             // Precio
             cardClonada.children[2].innerText = mostrarPrecio(servicio)
             //Botón agregar al carrito
-            cardClonada.children[3].id = "button-"+servicio.id  
+            cardClonada.children[3].id = "button-"+servicio.id 
+            cardClonada.children[3].setAttribute("marcador", servicio.id);
+            cardClonada.children[3].addEventListener("click", añadirProductoAlCarrito);
         }
     )
 }
@@ -79,6 +81,48 @@ const DOMcarrito = document.querySelector("#carrito");
 const DOMtotal = document.querySelector("#total");
 const DOMbotonVaciar = document.querySelector("#boton-vaciar");
 
+/*function renderizarProductos() {
+    baseDeDatos.forEach((info) => {
+      //estructura
+      const miNodo = document.createElement("div");
+      miNodo.classList.add("card", "col-sm-4");
+
+      // body
+      const miNodoBody = document.createElement("div");
+      miNodoBody.classList.add("card-body");
+
+      // titulo
+      const miNodoTitulo = document.createElement("h5");
+      miNodoTitulo.classList.add("card-title");
+      miNodoTitulo.textContent = info.nombre;
+
+      // imagen
+      const miNodoImagen = document.createElement("img");
+      miNodoImagen.classList.add("img-fluid");
+      miNodoImagen.setAttribute("src", info.imagen);
+
+      // precio
+      const miNodoPrecio = document.createElement("p");
+      miNodoPrecio.classList.add("card-text");
+      miNodoPrecio.textContent = `${info.precio}${divisa}`;
+
+      //boton
+      const miNodoBoton = document.createElement("button");
+      miNodoBoton.classList.add("btn", "btn-primary");
+      miNodoBoton.textContent = "+";
+      miNodoBoton.setAttribute("marcador", info.id);
+      miNodoBoton.addEventListener("click", añadirProductoAlCarrito);
+
+      //Insertamos
+      miNodoBody.appendChild(miNodoImagen);
+      miNodoBody.appendChild(miNodoTitulo);
+      miNodoBody.appendChild(miNodoPrecio);
+      miNodoBody.appendChild(miNodoBoton);
+      miNodo.appendChild(miNodoBody);
+      DOMitems.appendChild(miNodo);
+    });
+  }*/
+
 function añadirProductoAlCarrito(evento) {
     //añadir el nodo a nuestro carrito
     carrito.push(evento.target.getAttribute("marcador"));
@@ -94,7 +138,7 @@ function renderizarCarrito() {
     //generamos los nodos a partir del carrito
     carritoSinDuplicados.forEach((item) => {
         //obtenemos el item que necesitamos de la variable base de datos
-        const miItem = baseDeDatos.filter((itemBaseDatos) => {
+        const miItem = extras.filter((itemBaseDatos) => {
           // coincide los id? solo puede existir un caso
           return itemBaseDatos.id === parseInt(item);
         });
@@ -141,7 +185,7 @@ function calcularTotal() {
     return carrito
     .reduce((total, item) => {
       // de cada elemento obtenemos su precio
-      const miItem = baseDeDatos.filter((itemBaseDatos) => {
+      const miItem = extras.filter((itemBaseDatos) => {
         return itemBaseDatos.id === parseInt(item);
       });
       // los sumamos al total
@@ -162,5 +206,5 @@ function vaciarCarrito() {
 DOMbotonVaciar.addEventListener("click", vaciarCarrito);
 
 //inicio
-renderizarProductos();
+//renderizarProductos();
 renderizarCarrito();
