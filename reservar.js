@@ -12,12 +12,7 @@ class Reserva{
         return (this.fechaSalida-this.fechaEntrada)/1000/60/60/24; //duracion de la estadía en días.
     }
     tipoAlojamiento(){
-        if (this.tipo==1){
-            return "Monoambiente"
-        }
-        else{
-            return "Cabaña"
-        }
+        return (this.tipo==1)?"Monoambiente":"Cabaña";
     }
     determinarTemporada(){
         const mesEntrada=this.fechaEntrada.getMonth()+1;
@@ -57,12 +52,7 @@ formulario.addEventListener("submit", validarFormulario);
 
 function validarFormulario(e) {
     e.preventDefault();
-    if (monoambiente.checked){
-        tipo=1;
-    }
-    else {
-        tipo=2;
-    }
+    let tipo =(monoambiente.checked)?1:2;
     const fechaIngreso = parseDate(fechaEntrada.value)
     const fechaEgreso = parseDate(fechaSalida.value)
     //en este punto se podría chequear la validez de las fechas seleccionadas.
@@ -95,9 +85,6 @@ function renderizarReserva(reserva,section,card) {
     section.appendChild(cardClonada)
     const costos=calcularCosto(reserva.tipo,reserva.duracion(),reserva.cantPersonas,reserva.nivelTemporada())
     const descuento=reserva.duracion()>7;
-    if (descuento){
-        multiplier=1.2
-    }
     //cardClonada.children nos da un "array" con los elementos html dentro del elemento card, en este caso:
     cardClonada.children[1].innerText = "Responsable de la reserva: "+reserva.nombre+" "+reserva.apellido;
     cardClonada.children[2].innerText = "Email: "+reserva.email+"\nA esta dirección enviaremos la confirmación de tu reserva.";
