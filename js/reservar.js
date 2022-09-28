@@ -130,20 +130,18 @@ function calcularCosto(tipo,duracion,cantPersonas,nivelTemporada){
 function guardarReserva(reserva,key){
     //guardo una reserva en la "base de batos" simulada.
     const reservaStringified=JSON.stringify(reserva);
-    console.log(reservaStringified);
+    //console.log(reservaStringified);//para debuggear
     localStorage.setItem(key,reservaStringified);//guardo el item en el local storage con key="reserva" e item reserva stringified.
 }
 
 function cargarReserva(key){
     //cargo una reserva de la "base de datos" simulada.
     const reservaCargada = JSON.parse(localStorage.getItem(key));// cargo el item con key "key" del local storage.
-    //la reserva cargada tiene todos los atributos de la clase reserva pero NO TIENE los métodos de la clase
-    //preguntar en clase si hay una forma más elegante de devolverle sus métodos.
     //creo un objeto reserva con los atributos de la reserva cargada.
     //los elementos tipo "date" requieren un tratamiento especial porque al usar stringify se transformaron en strings
     const fechaEnt=new Date(reservaCargada.fechaEntrada);
     const fechaSal=new Date(reservaCargada.fechaSalida);
     reserva=new Reserva(reservaCargada.nombre,reservaCargada.apellido,reservaCargada.email,reservaCargada.tipo,fechaEnt,fechaSal,reservaCargada.cantPersonas);
-    console.log(reserva);
+    //console.log(reserva);//para debug
     return reserva;
 }
