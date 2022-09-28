@@ -76,52 +76,9 @@ function mostrarPrecio(servicio){
 /*-------------------implemento un carrito de compras------------*/
 let carrito = [];
 const divisa = "$";
-const DOMitems = document.querySelector("#items");
 const DOMcarrito = document.querySelector("#carrito");
 const DOMtotal = document.querySelector("#total");
 const DOMbotonVaciar = document.querySelector("#boton-vaciar");
-
-/*function renderizarProductos() {
-    baseDeDatos.forEach((info) => {
-      //estructura
-      const miNodo = document.createElement("div");
-      miNodo.classList.add("card", "col-sm-4");
-
-      // body
-      const miNodoBody = document.createElement("div");
-      miNodoBody.classList.add("card-body");
-
-      // titulo
-      const miNodoTitulo = document.createElement("h5");
-      miNodoTitulo.classList.add("card-title");
-      miNodoTitulo.textContent = info.nombre;
-
-      // imagen
-      const miNodoImagen = document.createElement("img");
-      miNodoImagen.classList.add("img-fluid");
-      miNodoImagen.setAttribute("src", info.imagen);
-
-      // precio
-      const miNodoPrecio = document.createElement("p");
-      miNodoPrecio.classList.add("card-text");
-      miNodoPrecio.textContent = `${info.precio}${divisa}`;
-
-      //boton
-      const miNodoBoton = document.createElement("button");
-      miNodoBoton.classList.add("btn", "btn-primary");
-      miNodoBoton.textContent = "+";
-      miNodoBoton.setAttribute("marcador", info.id);
-      miNodoBoton.addEventListener("click", añadirProductoAlCarrito);
-
-      //Insertamos
-      miNodoBody.appendChild(miNodoImagen);
-      miNodoBody.appendChild(miNodoTitulo);
-      miNodoBody.appendChild(miNodoPrecio);
-      miNodoBody.appendChild(miNodoBoton);
-      miNodo.appendChild(miNodoBody);
-      DOMitems.appendChild(miNodo);
-    });
-  }*/
 
 function añadirProductoAlCarrito(evento) {
     //añadir el nodo a nuestro carrito
@@ -133,6 +90,7 @@ function añadirProductoAlCarrito(evento) {
 function renderizarCarrito() {
     // vaciamos todo el html
     DOMcarrito.textContent = "";
+    //DOMcarrito.innerHTML="<h2>Carrito</h2>";
     // quitamos los duplicados
     const carritoSinDuplicados = [...new Set(carrito)];
     //generamos los nodos a partir del carrito
@@ -150,7 +108,7 @@ function renderizarCarrito() {
         // creamos el nodo del item del carrito
         const miNodo = document.createElement("li");
         miNodo.classList.add("list-group-item", "text-right", "mx-2");
-        miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${divisa} `;
+        miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${divisa}${miItem[0].valor} `;
         //boton de borrar
         const miBoton = document.createElement("button");
         miBoton.classList.add("btn", "btn-danger", "mx-5");
@@ -189,9 +147,9 @@ function calcularTotal() {
         return itemBaseDatos.id === parseInt(item);
       });
       // los sumamos al total
-      return total + miItem[0].precio;
+      return total + miItem[0].valor;
     }, 0)
-    .toFixed(2);
+    .toFixed(0);
 }
 
 //vaciar el carrito
@@ -206,5 +164,4 @@ function vaciarCarrito() {
 DOMbotonVaciar.addEventListener("click", vaciarCarrito);
 
 //inicio
-//renderizarProductos();
-renderizarCarrito();
+//renderizarCarrito();

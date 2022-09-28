@@ -210,4 +210,24 @@ footer #logos img {
 footer #logos img:hover {
   height: 70px;
   width: 70px;
+}
+
+#contenedorCarrito {
+  background-color: #F5C7A9;
+  color: #411530;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+}
+#contenedorCarrito h2 {
+  font-family: "Roboto Condensed";
+  margin: 0;
+}
+#contenedorCarrito .btn-danger {
+  background-color: #D1512D;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  margin: 5px;
 }/*# sourceMappingURL=styles.css.map */

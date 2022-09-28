@@ -1,0 +1,19 @@
+#contenedorCarrito{
+    background-color: $soft;
+    color:$dark;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    h2{
+        font-family: $narrow;
+        margin: 0;
+    }
+    .btn-danger{
+        background-color: $vibrant;
+        color: white;
+        padding: 10px;
+        font-size: 20px;
+        margin:5px;
+    }
+}
