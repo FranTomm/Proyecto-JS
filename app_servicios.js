@@ -36,12 +36,10 @@ function renderizar(array) {
 }
 
 function mostrarPrecio(servicio){
-    if (servicio.tipoCosto=='variable'){
-        return `$ ${servicio.valor} por día por persona`
-    }
-    else{
-        return `$ ${servicio.valor}`
-    }
+    //Agrego sugar syntax para desafio de operadores avanzados
+    return (servicio.tipoCosto=='variable')?
+    `$${servicio.valor} por día por persona`:
+    `$ ${servicio.valor}`
 }
 
 let section = document.getElementById("serviciosExtra")
