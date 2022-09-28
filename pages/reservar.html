@@ -57,13 +57,20 @@
             </template>
         </section>
         <section id="carrito" class="container">
-            <template>
+            <h2>Carrito</h2>
+            <!-- Elementos del carrito -->
+            <ul id="carrito" class="list-group"></ul>
+            <hr />
+            <!-- Precio total -->
+            <p class="text-right">Total: <span id="total"></span>$</p>
+            <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+            <!--<template>
                 <div class="card">
                     <h4>Servicio nombre</h4>
                     <img src="../media/servicios/traslado_desde.jpg" alt="servicio">
                     <p>precio</p>
                 </div>
-            </template>
+            </template>-->
         </section>
     </main>
     <aside id="asideForm">
@@ -152,5 +159,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <!--<script src="../app.js"></script>-->
     <script src="../reservar.js"></script>
+    <script src="../extras.js"></script>
 </body>
 </html>
