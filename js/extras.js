@@ -41,8 +41,7 @@ function buscarServicio(servicios,textoABuscar){
 }
 
 /*-------------------implemento un carrito de compras------------*/
-let carrito = [];
-const divisa = "$";
+//let carrito = [];
 const DOMcarrito = document.querySelector("#carrito");
 const DOMtotal = document.querySelector("#total");
 const DOMbotonVaciar = document.querySelector("#boton-vaciar");
@@ -68,7 +67,7 @@ function renderizarCarrito() {
         // creamos el nodo del item del carrito
         const miNodo = document.createElement("li");
         miNodo.classList.add("list-group-item", "text-right", "mx-2");
-        miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${divisa}${miItem[0].valor} `;
+        miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${mostrarPrecio(miItem[0])} `;
         //boton de borrar
         const miBoton = document.createElement("button");
         miBoton.classList.add("btn", "btn-danger", "mx-5");

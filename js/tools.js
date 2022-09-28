@@ -34,7 +34,36 @@ function mostrarPrecio(servicio){
 //funciones asociadas al carrito de compras
 function añadirProductoAlCarrito(evento) {
     //añadir el nodo a nuestro carrito
-    carrito.push(evento.target.getAttribute("marcador"));
+    servicio=extras.filter(servicio=>servicio.id==evento.target.getAttribute("marcador"));
+    console.log(servicio)
+    let cantidad=1;
+    if(servicio.tipoCosto=='variable'){
+        cantidad=prompt(`Ingrese el numero de días.`)
+    }
+    for (let i = 0; i < cantidad; i++){
+        carrito.push(evento.target.getAttribute("marcador"));
+    }  
     //actualizar el carrito
     renderizarCarrito();
 }
+
+/*---------- funciones para guardar y cargar el carrito del local storage ---------*/
+function guardarItem(item,key){
+    //guardo una reserva/carrito en la "base de batos" simulada.
+    const itemStringified=JSON.stringify(item);
+    //console.log(reservaStringified);//para debuggear
+    localStorage.setItem(key,itemStringified);//guardo el item en el local storage con key="key" e item itemStringified.
+}
+
+function cargarCarrito(key){
+    //cargo un carrito de la "base de datos" simulada.
+    const carritoCargado = JSON.parse(localStorage.getItem(key));// cargo el item con key "key" del local storage.
+    //console.log(carritoCargado);//para debug
+    return carrito;
+}
+
+// al abrir la página chequeo si hay un carrito guardado en el local storage y sino abro uno
+let carrito=[];
+guardarItem(carrito,'carrito')
+carrito=cargarCarrito('carrito')
+console.log(carrito)
