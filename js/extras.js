@@ -79,8 +79,12 @@ function renderizarCarrito() {
         miNodo.appendChild(miBoton);
         DOMcarrito.appendChild(miNodo);
     });
-    //renderizamos el precio ttotal en el html
-    DOMtotal.textContent = calcularTotal();
+    //renderizamos el precio total en el html
+    const total=calcularTotal();
+    DOMtotal.textContent = total;
+    //lo renderizamos tambien en la sección faturación
+    DOMtotalExtras.textContent = total;
+    renderizarTotal()
 }
 
 //evento para borrar un elemento del carrito

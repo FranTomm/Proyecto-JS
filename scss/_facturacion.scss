@@ -1,0 +1,22 @@
+#facturacion{
+    background-color: $soft_transparent;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    h2{
+        font-family: $narrow;
+        margin: 0;
+    }
+    .btn{
+        background-color: $contrast;
+        color: white;
+        padding: 10px;
+        font-size: 20px;
+        margin:5px;
+    }
+    #displayTotal{
+        font-weight: 600;
+    }
+}

@@ -62,7 +62,7 @@
             <ul id="carrito" class="list-group"></ul>
             <hr />
             <!-- Precio total -->
-            <p class="text-right">Total: <span id="total"></span>$</p>
+            <p class="text-right">Total: $<span id="total"></span></p>
             <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
         </section>
     </main>
@@ -137,6 +137,15 @@
                     <input class="button btn btn-primary col-5 col-sm-3 col-lg-3" type="submit" value="Buscar">
                 </div> 
         </form>
+        <section id="facturacion" class="container">
+            <h2>Tu compra:</h2>
+            <p class="text-right">Total reserva: $<span id="totalReserva"></span></p>
+            <p class="text-right">Total servicios extra: $<span id="totalServicios"></span></p>
+            <hr/>
+            <!-- Precio total -->
+            <p class="text-right">Total: $<span id="totalCompra"></span></p>
+            <button id="boton-comprar" class="btn">Comprar</button>
+        </section>
     </aside>
     <footer>
         <div id="text">

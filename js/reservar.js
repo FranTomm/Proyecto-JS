@@ -107,6 +107,9 @@ function renderizarReserva(reserva,section,card) {
     }
     cardClonada.children[13].innerText = "Costo fijo de limpieza: $"+costos[1];
     cardClonada.children[14].innerText = "Total estadía: $"+costos[2];
+    //actualizo el total en la sección facturación
+    DOMtotalReserva.innerText=costos[2];
+    renderizarTotal()
 }
 
 function calcularCosto(tipo,duracion,cantPersonas,nivelTemporada){

@@ -230,4 +230,27 @@ footer #logos img:hover {
   padding: 10px;
   font-size: 20px;
   margin: 5px;
+}
+
+#facturacion {
+  background-color: rgba(245, 199, 169, 0.168627451);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+}
+#facturacion h2 {
+  font-family: "Roboto Condensed";
+  margin: 0;
+}
+#facturacion .btn {
+  background-color: rgb(4, 119, 181);
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  margin: 5px;
+}
+#facturacion #displayTotal {
+  font-weight: 600;
 }/*# sourceMappingURL=styles.css.map */
