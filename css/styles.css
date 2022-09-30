@@ -3,7 +3,7 @@
 /* fonts */
 .container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
   -webkit-padding-start: 0px;
           padding-inline-start: 0px;
   gap: 10px;
