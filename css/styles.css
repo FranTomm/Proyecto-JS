@@ -154,7 +154,8 @@ aside form .form-check {
   background-color: rgba(0, 0, 0, 0);
 }
 aside form .buttons {
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 aside form .buttons .btn-primary {
   background-color: #D1512D;
