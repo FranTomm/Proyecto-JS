@@ -66,22 +66,22 @@ function cargarCarrito(key){
 let carrito=[];
 guardarItem(carrito,'carrito')
 carrito=cargarCarrito('carrito')
-console.log(carrito)
+//console.log(carrito) para debug
 
-/* implemento la sección de costo total */
-/*------------------sección de facturación------------------*/
-//const DOMfacturacion = document.querySelector("#facturacion");
-const DOMtotalReserva = document.querySelector("#totalReserva");
-const DOMtotalExtras = document.querySelector("#totalServicios");
-const DOMtotalFacturacion = document.querySelector("#totalCompra");
-const DOMbotonComprar = document.querySelector("#boton-comprar");
-
-DOMbotonComprar.addEventListener("click",comprar)
-function comprar() {
-    alert("ATENCIÓN: Serás redirigido a la página de pagos para finalizar tu reserva.")
-}
-function renderizarTotal(){
-    const totalReserva=(parseFloat(DOMtotalReserva.innerText)>0)?parseFloat(DOMtotalReserva.innerText):0;
-    const totalExtras=(parseFloat(DOMtotalExtras.innerText)>0)?parseFloat(DOMtotalExtras.innerText):0;
-    DOMtotalFacturacion.innerText=totalReserva+totalExtras
-}
+/*------------------------Base de datos de servicios extra------------------*/
+/* Agrego esta sección para el desafío complementario de arrays. */
+/*----------------- servicios extra------------------------------*/
+const extras=[//array de objetos
+    {id:1,nombre:'Traslado desde el aeropuerto',tipoCosto:'fijo',valor:2500,img:"../media/servicios/traslado_desde.jpg",descripcion:"Traslado desde el auropuerto para un máximo de 4 personas."},
+    {id:2,nombre:'Traslado hacia el aeropuerto',tipoCosto:'fijo',valor:2500,img:"../media/servicios/traslado_hacia.jpg",descripcion:"Traslado hacia el auropuerto para un máximo de 4 personas."},
+    {id:3,nombre:'Lavandería',tipoCosto:'fijo',valor:1500,img:"../media/servicios/lavanderia.jpg",descripcion:"Lavado de ropa hasta 5kg."},
+    {id:4,nombre:'Desayuno simple',tipoCosto:'variable',valor:800,img:"../media/servicios/desayuno_simple.jpg",descripcion:"Un desayuno simple para 1 persona. Se entrega en el alojamiento a partir de las 8hs."},
+    {id:5,nombre:'Desayuno continental',tipoCosto:'variable',valor:1600,img:"../media/servicios/desayuno_continental.jpg",descripcion:"Un desayuno continental para 1 persona. Se entrega en el alojamiento a partir de las 8hs."},
+    {id:6,nombre:'Excursión en combi a Pampalinda',tipoCosto:'variable',valor:1000,img:"../media/servicios/Tronador.jpg",descripcion:"Traslado en combi ida y vuelta desde Bariloche hasta Pampalinda."},
+    {id:7,nombre:'Alquiler de mountainbike',tipoCosto:'variable',valor:3000,img:"../media/servicios/mountainbike.jpg",descripcion:"Alquiler diario de una bicicleta tipo mountain bike."},
+    {id:8,nombre:'Alquiler de kayak',tipoCosto:'variable',valor:3000,img:"../media/servicios/kayak2.jpg",descripcion:"Alquiler diario de equipo de Kayak tipo sit-on-top para una persona."},
+    {id:9,nombre:'Alquiler de equipo de esquí',tipoCosto:'variable',valor:4000,img:"../media/servicios/esqui.jpg",descripcion:"Alquiler diario de equipo de esquí para una persona."},
+    {id:10,nombre:'Alquiler de equipo de snowboard',tipoCosto:'variable',valor:4000,img:"../media/servicios/snowboard.jpg",descripcion:"Alquiler diario de equipo de snowboard para un persona."},
+    {id:11,nombre:'Alquiler de ropa para nieve',tipoCosto:'variable',valor:2000,img:"../media/servicios/ropanieve.jpg",descripcion:"Alquiler diario de ropa para nieve para una persona."},
+    {id:12,nombre:'Alquiler de raquetas para nieve',tipoCosto:'variable',valor:1500,img:"../media/servicios/raquetas.jpeg",descripcion:"Alquiler de raquetas para travesía sobre nieve para una persona."}
+]
