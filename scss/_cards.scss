@@ -1,7 +1,8 @@
 .container{
-    display:flex;
-    flex-direction: row;
-    justify-content: left;
+    display:grid;
+    grid-template-columns: auto auto auto auto;
+    padding-inline-start: 0px;
+    gap:10px;
 }
 
 .card{
@@ -15,10 +16,10 @@
     margin: 10px;
     box-shadow: 5px 5px 5px rgba(0,0,0,50%);
     height:500px;
-    width:300px;
+    width:400px;
     img{
         height: 300px;
-        width: 280px;
+        width: 380px;
         object-fit: cover;
     }
     h3,h4{

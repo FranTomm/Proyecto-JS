@@ -1,5 +1,5 @@
 function renderizar(array) {
-    section.innerHTML = ""//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
+    section.innerHTML = '<template><li class="card"><h3>Servicio nombre</h3><img src="../media/servicios/traslado_desde.jpg" alt="servicio"><p>precio</p><button class="button btn btn-primary">Añadir al carrito</button></li></template>'//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
 
     array.forEach((servicio)=> {
             let cardClonada = card.cloneNode(true)
