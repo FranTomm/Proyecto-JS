@@ -15,3 +15,8 @@ function renderizarTotal(){
     const totalExtras=(parseFloat(DOMtotalExtras.innerText)>0)?parseFloat(DOMtotalExtras.innerText):0;
     DOMtotalFacturacion.innerText=totalReserva+totalExtras
 }
+
+//para inicializar renderizo la reserva
+DOMtotalReserva.innerText='0';
+DOMtotalExtras.innerText='0';
+renderizarTotal()
