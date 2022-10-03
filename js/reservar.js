@@ -57,6 +57,10 @@ function validarFormulario(e) {
     const fechaEgreso = parseDate(fechaSalida.value)
     //en este punto se podría chequear la validez de las fechas seleccionadas.
     //tambien se podría chequear si la cantidad de personas no supera la cantidad máxima del alojamiento.
+    DOMerrorMsg=document.getElementById("errorMsg");
+    const capacidadMax=[4,6];
+    (cantPersonas.value>capacidadMax[tipo-1]||cantPersonas.value<1)&&errorMsg(DOMerrorMsg,"\nEl número de personas ingresado no es válido.");
+    (cantPersonas.value>capacidadMax[tipo-1]||cantPersonas.value<1)||errorMsg(DOMerrorMsg,"");
     reserva1=new Reserva(nombre.value,apellido.value,email.value,tipo,fechaIngreso,fechaEgreso,cantPersonas.value)
     //guardo la reserva en el local storage
     guardarItem(reserva1,"reserva1");
@@ -93,9 +97,7 @@ function renderizarReserva(reserva,section,card) {
     cardClonada.children[6].innerText = "Fecha de ingreso: "+reserva.fechaEntrada.toLocaleDateString();
     cardClonada.children[7].innerText = "Fecha de egreso: "+reserva.fechaSalida.toLocaleDateString();
     let textoDuracion="Duración de la estadía: "+reserva.duracion()
-    if(descuento){
-        textoDuracion=textoDuracion+"\n¡Por haber seleccionado mas de 7 días accedes a un 20% de descuento en el costo de tu estadía!"
-    }
+    textoDuracion=descuento?textoDuracion+="\n¡Por haber seleccionado mas de 7 días accedes a un 20% de descuento en el costo de tu estadía!":textoDuracion;
     cardClonada.children[8].innerText = textoDuracion;
     cardClonada.children[9].innerText = "Las fechas seleccionadas corresponden a temporada "+reserva1.determinarTemporada();
     if (descuento){
@@ -135,4 +137,8 @@ function cargarReserva(key){
     reserva=new Reserva(reservaCargada.nombre,reservaCargada.apellido,reservaCargada.email,reservaCargada.tipo,fechaEnt,fechaSal,reservaCargada.cantPersonas);
     //console.log(reserva);//para debug
     return reserva;
+}
+
+function errorMsg(DOMitem,msg){//defino esta funcion para poder usar el operador &&
+    DOMitem.innerText=msg
 }

@@ -215,6 +215,11 @@ footer #logos img:hover {
   width: 70px;
 }
 
+#errorMsg {
+  color: rgb(230, 196, 196);
+  text-shadow: 0 0 5px red;
+}
+
 #contenedorCarrito {
   background-color: #F5C7A9;
   color: #411530;
