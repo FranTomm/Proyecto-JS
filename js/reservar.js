@@ -117,15 +117,8 @@ function calcularCosto(tipo,duracion,cantPersonas,nivelTemporada){
     let costoVariable=0; //[$] costo diario
     const costoTemporadaMonoambiente=[2500,3500]; //el costo diario se ajusta segun sea temporada alta o baja con este array
     const costoTemporadaCabaña=[4500,6000]; //el costo diario se ajusta segun sea temporada alta o baja con este array
-    if (tipo==1){//monoambiente
-        costoVariable=costoTemporadaMonoambiente[nivelTemporada]+500*(cantPersonas-1);
-    }
-    else{//cabaña
-        costoVariable=costoTemporadaCabaña[nivelTemporada]+1000*(cantPersonas-1);
-    }
-    if (duracion>7){
-        costoVariable=costoVariable*0.8; //descuento del 20% si se quedan mas de una semana
-    }
+    costoVariable=tipo==1?costoTemporadaMonoambiente[nivelTemporada]+500*(cantPersonas-1):costoTemporadaCabaña[nivelTemporada]+1000*(cantPersonas-1);
+    costoVariable=duracion>7?costoVariable*0.8:costoVariable;//descuento del 20% si se quedan mas de una semana
     return [costoVariable,costoFijo,costoFijo+costoVariable*duracion];
 }
 
