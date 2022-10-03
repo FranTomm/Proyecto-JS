@@ -1,3 +1,4 @@
+const appName="extras";//identificador de la página del sitio
 /*-----------------------buscador de servicios extra-----------------------*/
 //obtener string a buscar del formulario mediante eventos
 const formularioBusqueda = document.querySelectorAll("form")[1];
@@ -88,6 +89,8 @@ function borrarItemCarrito(evento) {
     }).showToast();
     //volvemos a renderizar
     renderizarCarrito();
+    //actualizar el carrito en local storage
+    guardarItem(carrito,'carrito');
 }
 
 //calcula el precio total teniendo en cuenta los productos repetidos
@@ -119,6 +122,8 @@ function vaciarCarrito() {
     }).showToast();
     // renderizamos los cambios
     renderizarCarrito();
+    //actualizar el carrito en local storage
+    guardarItem(carrito,'carrito');
 }
 
 //eventos
