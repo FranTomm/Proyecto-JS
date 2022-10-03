@@ -34,15 +34,23 @@ function mostrarPrecio(servicio){
 //funciones asociadas al carrito de compras
 function añadirProductoAlCarrito(evento) {
     //añadir el nodo a nuestro carrito
-    servicio=extras.filter(servicio=>servicio.id==evento.target.getAttribute("marcador"));
+    const id=evento.target.getAttribute("marcador");
+    servicio=extras.filter(servicio=>servicio.id==id)[0];
     //console.log(servicio)//para debuggear
     let cantidad=1;
+    let numPersonas=1;
     if(servicio.tipoCosto=='variable'){
         cantidad=prompt(`Ingrese el numero de días.`)
+        numPersonas=prompt(`Ingrese el número de personas.`)
     }
-    for (let i = 0; i < cantidad; i++){
+    for (let i = 0; i < cantidad*numPersonas; i++){
         carrito.push(evento.target.getAttribute("marcador"));
     }  
+    //alert
+    Toastify({
+        text: `El servicio ${extras.filter(extra=>extra.id==id)[0].nombre} fue agregado al carrito.`,
+        duration: 3000, 
+      }).showToast();
     //actualizar el carrito
     renderizarCarrito();
 }
@@ -59,14 +67,12 @@ function cargarCarrito(key){
     //cargo un carrito de la "base de datos" simulada.
     const carritoCargado = JSON.parse(localStorage.getItem(key));// cargo el item con key "key" del local storage.
     //console.log(carritoCargado);//para debug
-    return carrito;
+    return carritoCargado;
 }
 
 // al abrir la página chequeo si hay un carrito guardado en el local storage y sino abro uno
-let carrito=[];
-guardarItem(carrito,'carrito')
-carrito=cargarCarrito('carrito')
-//console.log(carrito) para debug
+let carrito=(cargarCarrito('carrito')||[]);
+console.log(carrito); //para debug
 
 /*------------------------Base de datos de servicios extra------------------*/
 /* Agrego esta sección para el desafío complementario de arrays. */

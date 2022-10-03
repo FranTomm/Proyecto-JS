@@ -78,6 +78,14 @@ function borrarItemCarrito(evento) {
     carrito = carrito.filter((carritoId) => {
       return carritoId !== id;
     });
+    //alert
+    Toastify({
+      text: `El servicio ${extras.filter(extra=>extra.id==id)[0].nombre} fue eliminado del carrito.`,
+      duration: 3000,
+      style:{
+        background:'linear-gradient(to right,red,#D1512D)'
+      }  
+    }).showToast();
     //volvemos a renderizar
     renderizarCarrito();
 }
@@ -102,6 +110,13 @@ function calcularTotal() {
 function vaciarCarrito() {
     //limpiar los productos guardados
     carrito = [];
+    Toastify({
+      text: "El carrito ha sido vaciado",
+      duration: 3000,
+      style:{
+        background:'linear-gradient(to right,red,#D1512D)'
+      }  
+    }).showToast();
     // renderizamos los cambios
     renderizarCarrito();
 }
