@@ -125,4 +125,4 @@ function vaciarCarrito() {
 DOMbotonVaciar.addEventListener("click", vaciarCarrito);
 
 //inicio
-//renderizarCarrito();
+renderizarCarrito();

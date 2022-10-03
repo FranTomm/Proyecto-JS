@@ -53,6 +53,8 @@ function añadirProductoAlCarrito(evento) {
       }).showToast();
     //actualizar el carrito
     renderizarCarrito();
+    //guardar cambios en el local storage
+    guardarItem(carrito,'carrito');
 }
 
 /*---------- funciones para guardar y cargar el carrito del local storage ---------*/
