@@ -35,24 +35,59 @@ function añadirProductoAlCarrito(evento) {
     const id=evento.target.getAttribute("marcador");
     servicio=extras.filter(servicio=>servicio.id==id)[0];
     //console.log(servicio)//para debuggear
-    let cantidad=1;
+    let duracion=1;
     let numPersonas=1;
     if(servicio.tipoCosto=='variable'){
-        cantidad=prompt(`Ingrese el numero de días.`)
-        numPersonas=prompt(`Ingrese el número de personas.`)
+        Swal.fire({
+            title: `Agregar servicio al carrito`,
+            html: `<p>Por favor ingrese la cantidad de personas que utilizaran este servicio y el número de días que desean utilizarlo.</p>
+            <label for="numPersonas" class="form-label">Número de personas:</label>
+            <input type="number" id="numPersonas" class="swal2-input" placeholder="2">
+            <br>
+            <label for="duracion" class="form-label">Número de días:</label>
+            <input type="number" id="duracion" class="swal2-input" placeholder="7">`,
+            confirmButtonText: 'Confirmar',
+            focusConfirm: false,
+            preConfirm: () => {
+              const numPersonas = Swal.getPopup().querySelector('#numPersonas').value
+              const duracion = Swal.getPopup().querySelector('#duracion').value
+              if (!numPersonas || !duracion) {
+                Swal.showValidationMessage(`Por favor ingrese los datos solicitados.`)
+              }
+              return { numPersonas: numPersonas, duracion: duracion }
+            }
+          }).then((result) => {
+
+            Swal.fire(`
+              Cantidad de personas: ${result.value.numPersonas}
+              Cantidad de días: ${result.value.duracion}
+            `.trim())
+            for (let i = 0; i < result.value.numPersonas*result.value.duracion; i++){
+                carrito.push(evento.target.getAttribute("marcador"));
+            }  
+            //alert
+            Toastify({
+                text: `El servicio ${extras.filter(extra=>extra.id==id)[0].nombre} fue agregado al carrito.`,
+                duration: 3000, 
+            }).showToast();
+            //actualizar el carrito
+            appName=="extras"&&renderizarCarrito();
+            //guardar cambios en el local storage
+            guardarItem(carrito,'carrito');
+          })
     }
-    for (let i = 0; i < cantidad*numPersonas; i++){
+    else{
         carrito.push(evento.target.getAttribute("marcador"));
-    }  
-    //alert
-    Toastify({
-        text: `El servicio ${extras.filter(extra=>extra.id==id)[0].nombre} fue agregado al carrito.`,
-        duration: 3000, 
-      }).showToast();
-    //actualizar el carrito
-    appName=="extras"&&renderizarCarrito();
-    //guardar cambios en el local storage
-    guardarItem(carrito,'carrito');
+        //alert
+        Toastify({
+            text: `El servicio ${extras.filter(extra=>extra.id==id)[0].nombre} fue agregado al carrito.`,
+            duration: 3000, 
+        }).showToast();
+        //actualizar el carrito
+        appName=="extras"&&renderizarCarrito();
+        //guardar cambios en el local storage
+        guardarItem(carrito,'carrito');
+    }     
 }
 
 /*---------- funciones para guardar y cargar el carrito del local storage ---------*/
