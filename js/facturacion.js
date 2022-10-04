@@ -7,8 +7,26 @@ const DOMtotalFacturacion = document.querySelector("#totalCompra");
 const DOMbotonComprar = document.querySelector("#boton-comprar");
 
 DOMbotonComprar.addEventListener("click",comprar)
-function comprar() {
-    alert("ATENCIÓN: Serás redirigido a la página de pagos para finalizar tu reserva.")
+function comprar(e) {
+    e.preventDefault();
+    Swal.fire({
+        title: '¡Atención!',
+        text: "Serás redirigido a la página de pagos para finalizar tu reserva.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ir a la página de pagos',
+        cancelButtonText: 'Volver'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            '¡Listo!',
+            'A contiuación serás redirigido a la página de pagos.',
+            '¡Gracias por su compra!'
+          )
+        }
+      })
 }
 function renderizarTotal(){
     const totalReserva=(parseFloat(DOMtotalReserva.innerText)>0)?parseFloat(DOMtotalReserva.innerText):0;
