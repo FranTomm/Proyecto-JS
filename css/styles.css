@@ -180,6 +180,10 @@ main {
   padding: 25px;
   padding-top: 10px;
 }
+main h3 {
+  font-family: "Roboto Condensed";
+  margin: 0;
+}
 
 footer {
   grid-area: footer;
@@ -227,10 +231,6 @@ footer #logos img:hover {
   flex-direction: column;
   padding: 10px;
   margin: 10px;
-}
-#contenedorCarrito h2 {
-  font-family: "Roboto Condensed";
-  margin: 0;
 }
 #contenedorCarrito .btn-danger {
   background-color: #D1512D;
