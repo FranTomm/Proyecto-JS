@@ -63,7 +63,10 @@ function validarFormulario(e) {
     //tambien se podría chequear si la cantidad de personas no supera la cantidad máxima del alojamiento.
     DOMerrorMsg=document.getElementById("errorMsg");
     const capacidadMax=[4,6];
-    (cantPersonas.value>capacidadMax[tipo-1]||cantPersonas.value<1)&&errorMsg(DOMerrorMsg,"\nEl número de personas ingresado no es válido.");
+    if(cantPersonas.value>capacidadMax[tipo-1]||cantPersonas.value<1){
+        errorMsg(DOMerrorMsg,"\nEl número de personas ingresado no es válido.");
+        return
+    }
     (cantPersonas.value>capacidadMax[tipo-1]||cantPersonas.value<1)||errorMsg(DOMerrorMsg,"");
     reserva1=new Reserva(nombre.value,apellido.value,email.value,tipo,fechaIngreso,fechaEgreso,cantPersonas.value)
     //guardo la reserva en el local storage
@@ -89,7 +92,7 @@ function parseDate(string){
 
 function renderizarReserva(reserva,section,card) {
     if(reserva.length==0){
-        section.innerHTML='<p>Por favor complete el formulario a la izquierda para realizar una reserva.</p>'
+        section.innerHTML='<p>Por favor complete el formulario a la izquierda para realizar una reserva.</p><template id="templateReserva"><div><h4>Datos de contacto</h4><p>Responsable de la reserva:</p><p>email: (a esta dirección enviaremos la confirmación de tu reserva)</p><h4>Datos de la reserva:</h4><p>Tipo de alojamiento:</p><p>Número de Personas:</p><p>Fecha de Ingreso:</p><p>Fecha de Egreso:</p><p>Duración de la estadía:</p><p>Las fechas seleccionadas corresponden a temporada alta/baja.</p><p>Si los datos proporcionados no son correctos, por favor actualice la página y vuelva a rellenar el formulario.</p><h4>Facturación</h4><p>Costo estadía:</p><p>Costo fijo limpieza:</p><p>Total:</p></div></template>'
         return
     }
     section.innerHTML = '<template id="templateReserva"><div><h4>Datos de contacto</h4><p>Responsable de la reserva:</p><p>email: (a esta dirección enviaremos la confirmación de tu reserva)</p><h4>Datos de la reserva:</h4><p>Tipo de alojamiento:</p><p>Número de Personas:</p><p>Fecha de Ingreso:</p><p>Fecha de Egreso:</p><p>Duración de la estadía:</p><p>Las fechas seleccionadas corresponden a temporada alta/baja.</p><p>Si los datos proporcionados no son correctos, por favor actualice la página y vuelva a rellenar el formulario.</p><h4>Facturación</h4><p>Costo estadía:</p><p>Costo fijo limpieza:</p><p>Total:</p></div></template>'//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).

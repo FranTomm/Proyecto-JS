@@ -249,9 +249,12 @@ footer #logos img:hover {
   padding: 10px;
   margin: 10px;
 }
-#facturacion h2 {
+#facturacion h3 {
   font-family: "Roboto Condensed";
   margin: 0;
+}
+#facturacion hr {
+  transform: rotate(90deg);
 }
 #facturacion .btn {
   background-color: rgb(4, 119, 181);
