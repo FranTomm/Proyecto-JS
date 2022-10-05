@@ -15,7 +15,7 @@
     padding: 10px;
     margin: 10px;
     box-shadow: 5px 5px 5px rgba(0,0,0,50%);
-    height:500px;
+    height:600px;
     width:400px;
     img{
         height: 300px;
@@ -23,10 +23,12 @@
         object-fit: cover;
     }
     h3,h4{
-        font-size: 24px;
+        font-size: 26px;
+        margin: 10px;
     }
     p{
         text-align: center;
+        font-size: 22px;
     }
     button{
         background-color:$contrast;

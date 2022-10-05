@@ -2,7 +2,7 @@
 /*---------------------------Desafío complementario de DOM-----------------------------*/
 /* Función para renderizar las cards de servicios extra*/
 function renderizar(array,section,card) {
-    section.innerHTML = '<template>    <div class="card">        <h3>Servicio nombre</h3>        <img src="../media/servicios/traslado_desde.jpg" alt="servicio">        <p>precio</p>        <button class="button btn btn-primary">Añadir al carrito</button>    </div></template>'//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
+    section.innerHTML = '<template><div class="card"><h3>Servicio nombre</h3><img src="../media/servicios/traslado_desde.jpg" alt="servicio"><p>descripción</p><p>precio</p><button class="button btn btn-primary">Añadir al carrito</button></div></template>'//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
     if (array.length==0){
         section.innerHTML='<p>No se encontraron resultados. Por favor ingrese otro término de búsqueda.</p>'+section.innerHTML;
     }
@@ -14,12 +14,14 @@ function renderizar(array,section,card) {
             cardClonada.children[0].innerText = servicio.nombre
             //Img
             cardClonada.children[1].src = servicio.img
+            //Descripción
+            cardClonada.children[2].innerText = servicio.descripcion
             // Precio
-            cardClonada.children[2].innerText = mostrarPrecio(servicio)
+            cardClonada.children[3].innerText = mostrarPrecio(servicio)
             //Botón agregar al carrito
-            cardClonada.children[3].id = "button-"+servicio.id 
-            cardClonada.children[3].setAttribute("marcador", servicio.id);
-            cardClonada.children[3].addEventListener("click", añadirProductoAlCarrito);
+            cardClonada.children[4].id = "button-"+servicio.id 
+            cardClonada.children[4].setAttribute("marcador", servicio.id);
+            cardClonada.children[4].addEventListener("click", añadirProductoAlCarrito);
         }
     )
 }

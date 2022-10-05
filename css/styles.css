@@ -19,7 +19,7 @@
   padding: 10px;
   margin: 10px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-  height: 500px;
+  height: 600px;
   width: 400px;
 }
 .card img {
@@ -29,10 +29,12 @@
      object-fit: cover;
 }
 .card h3, .card h4 {
-  font-size: 24px;
+  font-size: 26px;
+  margin: 10px;
 }
 .card p {
   text-align: center;
+  font-size: 22px;
 }
 .card button {
   background-color: rgb(4, 119, 181);
@@ -222,6 +224,10 @@ footer #logos img:hover {
 #errorMsg {
   color: rgb(230, 196, 196);
   text-shadow: 0 0 5px red;
+}
+
+.emphasis {
+  font-weight: 600;
 }
 
 #contenedorCarrito {
