@@ -32,7 +32,6 @@ const DOMbotonVaciar = document.querySelector("#boton-vaciar");
 function renderizarCarrito() {
     // vaciamos todo el html
     DOMcarrito.textContent = "";
-    //DOMcarrito.innerHTML="<h2>Carrito</h2>";
     // quitamos los duplicados
     const carritoSinDuplicados = [...new Set(carrito)];
     //generamos los nodos a partir del carrito
@@ -62,6 +61,10 @@ function renderizarCarrito() {
         miNodo.appendChild(miBoton);
         DOMcarrito.appendChild(miNodo);
     });
+    //nos fijamos si el carrito esta vacio
+    const miWarning = document.createElement("p");
+    miWarning.innerText="El carrito está vacío.";
+    carrito.length==0&&DOMcarrito.appendChild(miWarning);
     //renderizamos el precio total en el html
     const total=calcularTotal();
     DOMtotal.textContent = total;
