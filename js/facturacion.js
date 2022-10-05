@@ -22,8 +22,8 @@ function comprar(e) {
         if (result.isConfirmed) {
           Swal.fire(
             '¡Listo!',
-            'A contiuación serás redirigido a la página de pagos.',
-            '¡Gracias por su compra!'
+            'A contiuación serás redirigido a la página de pagos.\n¡Gracias por su compra!',
+            'success'
           )
         }
       })

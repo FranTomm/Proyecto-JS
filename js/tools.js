@@ -94,7 +94,6 @@ function añadirProductoAlCarrito(evento) {
 function guardarItem(item,key){
     //guardo una reserva/carrito en la "base de batos" simulada.
     const itemStringified=JSON.stringify(item);
-    //console.log(reservaStringified);//para debuggear
     localStorage.setItem(key,itemStringified);//guardo el item en el local storage con key="key" e item itemStringified.
 }
 

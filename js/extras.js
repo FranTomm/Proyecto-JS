@@ -25,7 +25,6 @@ function buscarServicio(servicios,textoABuscar){
 }
 
 /*-------------------implemento un carrito de compras------------*/
-//let carrito = [];
 const DOMcarrito = document.querySelector("#carrito");
 const DOMtotal = document.querySelector("#total");
 const DOMbotonVaciar = document.querySelector("#boton-vaciar");

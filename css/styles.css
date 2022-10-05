@@ -262,4 +262,10 @@ footer #logos img:hover {
 }
 #facturacion #displayTotal {
   font-weight: 600;
+}
+
+#reserva, #rdosBusqueda {
+  font-size: 18px;
+  background-color: rgba(65, 21, 48, 0.1294117647);
+  padding: 10px;
 }/*# sourceMappingURL=styles.css.map */

@@ -35,8 +35,12 @@ class Reserva{
         }
     }
 }
-
-let reserva1=new Reserva(0,0,0,0,0,0,0);//solo lo inicializo.
+//Inicializo la reserva, cargo alguna reserva anterior si existiese en el local storage
+let reserva1=cargarReserva("reserva1");
+let sectionIni = document.getElementById("reserva");
+let tempIni = document.querySelectorAll("template");
+let cardIni = tempIni[0].content.querySelector("div");
+renderizarReserva(reserva1,sectionIni,cardIni)
 
 const formulario = document.querySelector("form");
 nombre = document.querySelector("#inputName");
@@ -84,6 +88,10 @@ function parseDate(string){
 }
 
 function renderizarReserva(reserva,section,card) {
+    if(reserva.length==0){
+        section.innerHTML='<p>Por favor complete el formulario a la izquierda para realizar una reserva.</p>'
+        return
+    }
     section.innerHTML = '<template id="templateReserva"><div><h4>Datos de contacto</h4><p>Responsable de la reserva:</p><p>email: (a esta dirección enviaremos la confirmación de tu reserva)</p><h4>Datos de la reserva:</h4><p>Tipo de alojamiento:</p><p>Número de Personas:</p><p>Fecha de Ingreso:</p><p>Fecha de Egreso:</p><p>Duración de la estadía:</p><p>Las fechas seleccionadas corresponden a temporada alta/baja.</p><p>Si los datos proporcionados no son correctos, por favor actualice la página y vuelva a rellenar el formulario.</p><h4>Facturación</h4><p>Costo estadía:</p><p>Costo fijo limpieza:</p><p>Total:</p></div></template>'//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
     let cardClonada = card.cloneNode(true)
     section.appendChild(cardClonada)
@@ -129,13 +137,15 @@ function calcularCosto(tipo,duracion,cantPersonas,nivelTemporada){
 //la funcion para cargar debe ser específica para la reserva.
 function cargarReserva(key){
     //cargo una reserva de la "base de datos" simulada.
-    const reservaCargada = JSON.parse(localStorage.getItem(key));// cargo el item con key "key" del local storage.
+    const reservaCargada = (JSON.parse(localStorage.getItem(key))||[]);// cargo el item con key "key" del local storage.
     //creo un objeto reserva con los atributos de la reserva cargada.
     //los elementos tipo "date" requieren un tratamiento especial porque al usar stringify se transformaron en strings
+    if (reservaCargada.length==0){
+        return [];
+    }
     const fechaEnt=new Date(reservaCargada.fechaEntrada);
     const fechaSal=new Date(reservaCargada.fechaSalida);
     reserva=new Reserva(reservaCargada.nombre,reservaCargada.apellido,reservaCargada.email,reservaCargada.tipo,fechaEnt,fechaSal,reservaCargada.cantPersonas);
-    //console.log(reserva);//para debug
     return reserva;
 }
 
