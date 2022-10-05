@@ -33,10 +33,7 @@ function mostrarPrecio(servicio){
 function añadirProductoAlCarrito(evento) {
     //añadir el nodo a nuestro carrito
     const id=evento.target.getAttribute("marcador");
-    servicio=extras.filter(servicio=>servicio.id==id)[0];
-    //console.log(servicio)//para debuggear
-    let duracion=1;
-    let numPersonas=1;
+    const servicio=extras.filter(servicio=>servicio.id==id)[0];
     if(servicio.tipoCosto=='variable'){
         Swal.fire({
             title: `Agregar servicio al carrito`,
@@ -63,11 +60,11 @@ function añadirProductoAlCarrito(evento) {
               Cantidad de días: ${result.value.duracion}
             `.trim())
             for (let i = 0; i < result.value.numPersonas*result.value.duracion; i++){
-                carrito.push(evento.target.getAttribute("marcador"));
+                carrito.push(id);
             }  
             //alert
             Toastify({
-                text: `El servicio ${extras.filter(extra=>extra.id==id)[0].nombre} fue agregado al carrito.`,
+                text: `El servicio ${servicio.nombre} fue agregado al carrito.`,
                 duration: 3000, 
             }).showToast();
             //actualizar el carrito
@@ -77,10 +74,10 @@ function añadirProductoAlCarrito(evento) {
           })
     }
     else{
-        carrito.push(evento.target.getAttribute("marcador"));
+        carrito.push(id);
         //alert
         Toastify({
-            text: `El servicio ${extras.filter(extra=>extra.id==id)[0].nombre} fue agregado al carrito.`,
+            text: `El servicio ${servicio.nombre} fue agregado al carrito.`,
             duration: 3000, 
         }).showToast();
         //actualizar el carrito
