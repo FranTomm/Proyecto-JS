@@ -3,7 +3,9 @@
 /* Función para renderizar las cards de servicios extra*/
 function renderizar(array,section,card) {
     section.innerHTML = '<template>    <div class="card">        <h3>Servicio nombre</h3>        <img src="../media/servicios/traslado_desde.jpg" alt="servicio">        <p>precio</p>        <button class="button btn btn-primary">Añadir al carrito</button>    </div></template>'//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
-
+    if (array.length==0){
+        section.innerHTML='<p>No se encontraron resultados. Por favor ingrese otro término de búsqueda.</p>'+section.innerHTML;
+    }
     array.forEach((servicio)=> {
             let cardClonada = card.cloneNode(true)
             section.appendChild(cardClonada)
@@ -101,9 +103,9 @@ function cargarCarrito(key){
     return carritoCargado;
 }
 
+// inicialización
 // al abrir la página chequeo si hay un carrito guardado en el local storage y sino abro uno
 let carrito=(cargarCarrito('carrito')||[]);
-console.log(carrito); //para debug
 
 /*------------------------Base de datos de servicios extra------------------*/
 /* Agrego esta sección para el desafío complementario de arrays. */
