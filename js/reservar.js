@@ -59,15 +59,22 @@ function validarFormulario(e) {
     let tipo =(monoambiente.checked)?1:2;
     const fechaIngreso = parseDate(fechaEntrada.value)
     const fechaEgreso = parseDate(fechaSalida.value)
-    //en este punto se podría chequear la validez de las fechas seleccionadas.
-    //tambien se podría chequear si la cantidad de personas no supera la cantidad máxima del alojamiento.
-    DOMerrorMsg=document.getElementById("errorMsg");
+    //chequeo si la cantidad de personas no supera la cantidad máxima del alojamiento.
+    let DOMerrorMsg=document.getElementById("errorMsg");
     const capacidadMax=[4,6];
     if(cantPersonas.value>capacidadMax[tipo-1]||cantPersonas.value<1){
         errorMsg(DOMerrorMsg,"\nEl número de personas ingresado no es válido.");
         return
     }
-    (cantPersonas.value>capacidadMax[tipo-1]||cantPersonas.value<1)||errorMsg(DOMerrorMsg,"");
+    errorMsg(DOMerrorMsg,"");
+    //chequeo la validez de las fechas seleccionadas.
+    DOMerrorMsg=document.getElementById("errorMsgDates");
+    if(!checkValidDates(fechaIngreso,fechaEgreso)){
+        errorMsg(DOMerrorMsg,"\nLas fechas de entrada y/o salida ingresadas son inválidas");
+        return
+    }
+    errorMsg(DOMerrorMsg,"");
+    //Creo el objeto reserva
     reserva1=new Reserva(nombre.value,apellido.value,email.value,tipo,fechaIngreso,fechaEgreso,cantPersonas.value)
     //guardo la reserva en el local storage
     guardarItem(reserva1,"reserva1");
@@ -154,4 +161,14 @@ function cargarReserva(key){
 
 function errorMsg(DOMitem,msg){//defino esta funcion para poder usar el operador &&
     DOMitem.innerText=msg
+}
+
+function checkValidDates(entrada,salida){
+    //chequea si las fechas de entrada y salida ingresadas son válidas
+    hoy=new Date;
+    hoy.setHours(0);
+    hoy.setMinutes(0);
+    hoy.setSeconds(0);
+    hoy.setMilliseconds(0);//por si el usuario elije empezar la reserva hoy
+    return (entrada>=hoy&&salida>hoy&&salida>entrada)
 }
