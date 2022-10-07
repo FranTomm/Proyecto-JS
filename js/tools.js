@@ -111,7 +111,7 @@ let carrito=(cargarCarrito('carrito')||[]);
 
 /* --- Uso Fetch para conseguir la lista de servicios desde la base de datos simulada en un .json --- */
 const fetchServicios = async()=>{
-    const respuesta = await fetch("../js/database.json")
+    const respuesta = await fetch("../json/database.json")
     return await respuesta.json()
 }
 let extras=[];
