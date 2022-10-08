@@ -3,7 +3,7 @@
 /* Función para renderizar las cards de servicios extra*/
 function renderizar(array,section,card) {
     section.innerHTML = '<template><div class="card"><h3>Servicio nombre</h3><img src="../media/servicios/traslado_desde.jpg" alt="servicio"><p>descripción</p><p>precio</p><button class="button btn btn-primary">Añadir al carrito</button></div></template>'//esta linea borra todo lo que tenia en la sección (rdos de la búsqueda anterior por ejemplo).
-    if (array.length==0){
+    if (!array.length){
         section.innerHTML='<p>No se encontraron resultados. Por favor ingrese otro término de búsqueda.</p>'+section.innerHTML;
     }
     array.forEach((servicio)=> {
@@ -72,7 +72,7 @@ function añadirProductoAlCarrito(evento) {
                 duration: 3000, 
             }).showToast();
             //actualizar el carrito
-            appName=="extras"&&renderizarCarrito();
+            appName=="extras"&&renderizarCarrito(extras);
             //guardar cambios en el local storage
             guardarItem(carrito,'carrito');
           })
@@ -85,7 +85,7 @@ function añadirProductoAlCarrito(evento) {
             duration: 3000, 
         }).showToast();
         //actualizar el carrito
-        appName=="extras"&&renderizarCarrito();
+        appName=="extras"&&renderizarCarrito(extras);
         //guardar cambios en el local storage
         guardarItem(carrito,'carrito');
     }     
@@ -117,4 +117,4 @@ const fetchServicios = async()=>{
 let extras=[];
 fetchServicios().then(servicios=>
     extras=servicios
-    )
+    )//catch()...error management)
