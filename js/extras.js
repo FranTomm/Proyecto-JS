@@ -29,7 +29,7 @@ const DOMcarrito = document.querySelector("#carrito");
 const DOMtotal = document.querySelector("#total");
 const DOMbotonVaciar = document.querySelector("#boton-vaciar");
 
-function renderizarCarrito() {
+function renderizarCarrito(extras) {
     // vaciamos todo el html
     DOMcarrito.textContent = "";
     // quitamos los duplicados
@@ -90,7 +90,7 @@ function borrarItemCarrito(evento) {
       }  
     }).showToast();
     //volvemos a renderizar
-    renderizarCarrito();
+    renderizarCarrito(extras);
     //actualizar el carrito en local storage
     guardarItem(carrito,'carrito');
 }
@@ -123,7 +123,7 @@ function vaciarCarrito() {
       }  
     }).showToast();
     // renderizamos los cambios
-    renderizarCarrito();
+    renderizarCarrito(extras);
     //actualizar el carrito en local storage
     guardarItem(carrito,'carrito');
 }
@@ -132,4 +132,6 @@ function vaciarCarrito() {
 DOMbotonVaciar.addEventListener("click", vaciarCarrito);
 
 //inicio
-renderizarCarrito();
+fetchServicios().then(servicios=>
+  renderizarCarrito(servicios)
+  )
