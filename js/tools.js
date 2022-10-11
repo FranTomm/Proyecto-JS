@@ -48,6 +48,10 @@ function añadirProductoAlCarrito(evento) {
                 if (!numPersonas || !duracion) {
                   Swal.showValidationMessage(`Por favor ingrese los datos solicitados.`)
                 }
+                else{
+                    if(numPersonas<1){Swal.showValidationMessage(`El número de personas ingresado no es válido.`)}
+                    if(duracion<1){Swal.showValidationMessage(`La duración ingresada no es válida.`)}
+                }
                 return { numPersonas: numPersonas, duracion: duracion }
             }
         }).then((result) => {

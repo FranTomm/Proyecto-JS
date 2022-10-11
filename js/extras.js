@@ -29,21 +29,19 @@ const DOMbotonVaciar = document.querySelector("#boton-vaciar");
 function renderizarCarrito(extras) {
     // vacio todo el HTML del carrito.
     DOMcarrito.textContent = "";
-    // quitamos los duplicados
+    // elimino duplicados
     const carritoSinDuplicados = [...new Set(carrito)];
-    //generamos los nodos a partir del carrito
+    //genero los nodos a partir del carrito
     carritoSinDuplicados.forEach((item) => {
-        //obtenemos el item que necesitamos de la variable base de datos
-        const miItem = extras.filter((itemBaseDatos) => {
-          // coincide los id? solo puede existir un caso
+            const miItem = extras.filter((itemBaseDatos) => {
             return itemBaseDatos.id === parseInt(item);
         });
         // cuenta el numero de veces que se repite el producto
         const numeroUnidadesItem = carrito.reduce((total, itemId) => {
-            //coincide los id? incremento el contador, en caso contrario no mantengo
+            //si coincide los id? incremento el contador, en caso contrario no mantengo
             return itemId === item ? (total += 1) : total;
         }, 0);
-        // creamos el nodo del item del carrito
+        // creo el nodo del item del carrito
         const miNodo = document.createElement("li");
         miNodo.classList.add("list-group-item", "text-right", "mx-2");
         miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${mostrarPrecio(miItem[0])} `;
@@ -54,18 +52,18 @@ function renderizarCarrito(extras) {
         miBoton.style.marginLeft = "1rem";
         miBoton.dataset.item = item;
         miBoton.addEventListener("click", borrarItemCarrito);
-        //mezclamos nodos
+        //mezclo nodos
         miNodo.appendChild(miBoton);
         DOMcarrito.appendChild(miNodo);
     });
-    //nos fijamos si el carrito esta vacio
+    //verifico si el carrito esta vacio
     const miWarning = document.createElement("p");
     miWarning.innerText="El carrito está vacío.";
     !carrito.length&&DOMcarrito.appendChild(miWarning);
-    //renderizamos el precio total en el html
+    //renderizo el precio total en el html
     const total=calcularTotal();
     DOMtotal.textContent = total;
-    //lo renderizamos tambien en la sección faturación
+    //lo renderizo tambien en la sección faturación
     DOMtotalExtras.textContent = total;
     renderizarTotal()
 }
