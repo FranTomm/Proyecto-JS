@@ -1,6 +1,6 @@
 [
-    {"id":1,"nombre":"Traslado desde el aeropuerto","tipoCosto":"fijo","valor":2500,"img":"../media/servicios/traslado_desde.jpg","descripcion":"Traslado desde el auropuerto para un máximo de 4 personas."},
-    {"id":2,"nombre":"Traslado hacia el aeropuerto","tipoCosto":"fijo","valor":2500,"img":"../media/servicios/traslado_hacia.jpg","descripcion":"Traslado hacia el auropuerto para un máximo de 4 personas."},
+    {"id":1,"nombre":"Traslado desde el aeropuerto","tipoCosto":"fijo","valor":2500,"img":"../media/servicios/traslado_desde.jpg","descripcion":"Traslado desde el aeropuerto para un máximo de 4 personas."},
+    {"id":2,"nombre":"Traslado hacia el aeropuerto","tipoCosto":"fijo","valor":2500,"img":"../media/servicios/traslado_hacia.jpg","descripcion":"Traslado hacia el aeropuerto para un máximo de 4 personas."},
     {"id":3,"nombre":"Lavandería","tipoCosto":"fijo","valor":1500,"img":"../media/servicios/lavanderia.jpg","descripcion":"Lavado de ropa hasta 5kg."},
     {"id":4,"nombre":"Desayuno simple","tipoCosto":"variable","valor":800,"img":"../media/servicios/desayuno_simple.jpg","descripcion":"Un desayuno simple para 1 persona. Se entrega en el alojamiento a partir de las 8hs."},
     {"id":5,"nombre":"Desayuno continental","tipoCosto":"variable","valor":1600,"img":"../media/servicios/desayuno_continental.jpg","descripcion":"Un desayuno continental para 1 persona. Se entrega en el alojamiento a partir de las 8hs."},
