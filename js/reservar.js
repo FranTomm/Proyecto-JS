@@ -74,18 +74,14 @@ function validarFormulario(e) {
         return
     }
     errorMsg(DOMerrorMsg,"");
-    //Creo el objeto reserva
+    //Creo el objeto reserva y lo guardo en el local storage
     reserva1=new Reserva(nombre.value,apellido.value,email.value,tipo,fechaIngreso,fechaEgreso,cantPersonas.value)
-    //guardo la reserva en el local storage
     guardarItem(reserva1,"reserva1");
-    //cargo la reserva del local storage //este paso es innecesario, ya que solo necesito recuperar la reserva del local storage cuando reseteo la página.
-    //lo agrego para practicar lo visto de JSON por ahora.
-    reservaCargada=cargarReserva("reserva1")
-    //Pinto la reserva realizada en el HTML usando DOM
+    //Renderizo la reserva realizada en el HTML usando DOM
     let section = document.getElementById("reserva");
     let temp = document.querySelectorAll("template");
     let card = temp[0].content.querySelector("div");
-    renderizarReserva(reservaCargada,section,card)
+    renderizarReserva(reserva1,section,card)
 }
 
 function parseDate(string){
@@ -107,7 +103,6 @@ function renderizarReserva(reserva,section,card) {
     section.appendChild(cardClonada)
     const costos=calcularCosto(reserva.tipo,reserva.duracion(),reserva.cantPersonas,reserva.nivelTemporada())
     const descuento=reserva.duracion()>7;
-    //cardClonada.children nos da un "array" con los elementos html dentro del elemento card, en este caso:
     cardClonada.children[1].innerText = "Responsable de la reserva: "+reserva.nombre+" "+reserva.apellido;
     cardClonada.children[2].innerText = "Email: "+reserva.email+"\nA esta dirección enviaremos la confirmación de tu reserva.";
     cardClonada.children[4].innerText = "Tipo de alojamiento: "+reserva.tipoAlojamiento();  
@@ -146,9 +141,7 @@ function calcularCosto(tipo,duracion,cantPersonas,nivelTemporada){
 //la funcion para guardar es la misma que para guardar el carrito y se llama guardarItem
 //la funcion para cargar debe ser específica para la reserva.
 function cargarReserva(key){
-    //cargo una reserva de la "base de datos" simulada.
-    const reservaCargada = (JSON.parse(localStorage.getItem(key))||[]);// cargo el item con key "key" del local storage.
-    //creo un objeto reserva con los atributos de la reserva cargada.
+    const reservaCargada = (JSON.parse(localStorage.getItem(key))||[]);
     //los elementos tipo "date" requieren un tratamiento especial porque al usar stringify se transformaron en strings
     if (reservaCargada.length==0){
         return [];

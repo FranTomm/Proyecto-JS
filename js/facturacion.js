@@ -1,6 +1,4 @@
-/* implemento la sección de costo total */
 /*------------------sección de facturación------------------*/
-//const DOMfacturacion = document.querySelector("#facturacion");
 const DOMtotalReserva = document.querySelector("#totalReserva");
 const DOMtotalExtras = document.querySelector("#totalServicios");
 const DOMtotalFacturacion = document.querySelector("#totalCompra");
@@ -34,7 +32,7 @@ function renderizarTotal(){
     DOMtotalFacturacion.innerText=totalReserva+totalExtras
 }
 
-//para inicializar renderizo la reserva
+// inicialización
 DOMtotalReserva.innerText='0';
 DOMtotalExtras.innerText='0';
 renderizarTotal()

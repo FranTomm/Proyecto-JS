@@ -9,16 +9,13 @@ formularioBusqueda.addEventListener("submit", validarFormularioBusqueda);
 function validarFormularioBusqueda(e) {
     e.preventDefault();
     const resultados=buscarServicio(extras,strBusqueda.value)
-    //pinto los resultados en el dom
+    //renderizo los resultados de busqueda en el HTML
     let section = document.getElementById("rdosBusqueda")
     let temp = document.querySelectorAll("template")[1]
     let card = temp.content.querySelector("div")
     renderizar(resultados,section,card) 
 }
-
-/*------------------- funciones de orden superior--------------------------- */
-/* implemento un buscador de servicios */
-//creo un array con los servicios que cumplen el criterio de busqueda
+//función para crear un array con los servicios que cumplen el criterio de busqueda
 function buscarServicio(servicios,textoABuscar){
     textoABuscar=textoABuscar.toLowerCase()
     return servicios.filter(servicio=>servicio.nombre.toLowerCase().includes(textoABuscar));       
@@ -30,7 +27,7 @@ const DOMtotal = document.querySelector("#total");
 const DOMbotonVaciar = document.querySelector("#boton-vaciar");
 
 function renderizarCarrito(extras) {
-    // vaciamos todo el html
+    // vacio todo el HTML del carrito.
     DOMcarrito.textContent = "";
     // quitamos los duplicados
     const carritoSinDuplicados = [...new Set(carrito)];
@@ -39,12 +36,12 @@ function renderizarCarrito(extras) {
         //obtenemos el item que necesitamos de la variable base de datos
         const miItem = extras.filter((itemBaseDatos) => {
           // coincide los id? solo puede existir un caso
-          return itemBaseDatos.id === parseInt(item);
+            return itemBaseDatos.id === parseInt(item);
         });
         // cuenta el numero de veces que se repite el producto
         const numeroUnidadesItem = carrito.reduce((total, itemId) => {
-          //coincide los id? incremento el contador, en caso contrario no mantengo
-          return itemId === item ? (total += 1) : total;
+            //coincide los id? incremento el contador, en caso contrario no mantengo
+            return itemId === item ? (total += 1) : total;
         }, 0);
         // creamos el nodo del item del carrito
         const miNodo = document.createElement("li");
@@ -79,15 +76,15 @@ function borrarItemCarrito(evento) {
     const id = evento.target.dataset.item;
     //borramos los productos
     carrito = carrito.filter((carritoId) => {
-      return carritoId !== id;
+        return carritoId !== id;
     });
     //alert
     Toastify({
-      text: `El servicio ${extras.filter(extra=>extra.id==id)[0].nombre} fue eliminado del carrito.`,
-      duration: 3000,
-      style:{
-        background:'linear-gradient(to right,red,#D1512D)'
-      }  
+        text: `El servicio ${extras.filter(extra=>extra.id==id)[0].nombre} fue eliminado del carrito.`,
+        duration: 3000,
+        style:{
+          background:'linear-gradient(to right,red,#D1512D)'
+        }  
     }).showToast();
     //volvemos a renderizar
     renderizarCarrito(extras);
@@ -101,12 +98,12 @@ function calcularTotal() {
     //recorremos el array del carrito
     return carrito
     .reduce((total, item) => {
-      // de cada elemento obtenemos su precio
-      const miItem = extras.filter((itemBaseDatos) => {
-        return itemBaseDatos.id === parseInt(item);
-      });
-      // los sumamos al total
-      return total + miItem[0].valor;
+        // de cada elemento obtenemos su precio
+        const miItem = extras.filter((itemBaseDatos) => {
+          return itemBaseDatos.id === parseInt(item);
+        });
+        // los sumamos al total
+        return total + miItem[0].valor;
     }, 0)
     .toFixed(0);
 }
@@ -116,11 +113,11 @@ function vaciarCarrito() {
     //limpiar los productos guardados
     carrito = [];
     Toastify({
-      text: "El carrito ha sido vaciado",
-      duration: 3000,
-      style:{
-        background:'linear-gradient(to right,red,#D1512D)'
-      }  
+        text: "El carrito ha sido vaciado",
+        duration: 3000,
+        style:{
+            background:'linear-gradient(to right,red,#D1512D)'
+        }  
     }).showToast();
     // renderizamos los cambios
     renderizarCarrito(extras);
@@ -133,5 +130,5 @@ DOMbotonVaciar.addEventListener("click", vaciarCarrito);
 
 //inicio
 fetchServicios().then(servicios=>
-  renderizarCarrito(servicios)
-  )
+    renderizarCarrito(servicios)
+    )
