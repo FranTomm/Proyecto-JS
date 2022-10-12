@@ -24,7 +24,6 @@ aside{
     background-size:contain;
     background-attachment: fixed;
     div{
-        background-color: $soft_transparent;
         height: 100%;
         width: 100%;
         display: flex;
@@ -68,6 +67,7 @@ aside{
 
 #asideForm{
     font-size:24px;
+    padding: 10px;
 }
 
 main{
@@ -124,6 +124,14 @@ footer{
 
 .emphasis{
     font-weight: 600;
+}
+
+.bg-transparent{
+    background-color: $soft_transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-right:10px;
 }
 
 @import "carrito";

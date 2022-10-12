@@ -79,64 +79,68 @@
                 <legend>
                     Infomación de contacto
                 </legend>
-                <div>
-                    <label for="inputName" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Nombre">
-                </div>
-                <div>
-                    <label for="inputSurname" class="form-label">Apellido</label>
-                    <input type="text" class="form-control" id="inputSurname" placeholder="Apellido">  
-                </div>
-                <div>
-                    <label for="inputEmail" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="email@host.com"> 
-                </div>
-                <div class="narrow">
-                    <p id="errorMsgContacto"></p>
-                </div>                 
+                <div class="bg-transparent">
+                    <div>
+                        <label for="inputName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="inputName" placeholder="Nombre">
+                    </div>
+                    <div>
+                        <label for="inputSurname" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="inputSurname" placeholder="Apellido">  
+                    </div>
+                    <div>
+                        <label for="inputEmail" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="email@host.com"> 
+                    </div>
+                    <div>
+                        <p id="errorMsgContacto"></p>
+                    </div>    
+                </div>             
             </fieldset> 
             <fieldset class="row">
                 <legend>
                     Datos de la reserva
                 </legend>
-                <div>Tipo de alojamiento</div> 
-                <div class="narrow">
-                    <div class="narrow form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="alpina" value="option1" checked>
-                        <label class="form-check-label" for="aplina">
-                            Cabaña
-                        </label>
+                <div class="bg-transparent">
+                    <div>Tipo de alojamiento</div> 
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="alpina" value="option1" checked>
+                            <label class="form-check-label" for="aplina">
+                                Cabaña
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="monoambiente" value="option2">
+                            <label class="form-check-label" for="monoambiente">
+                                Monoambiente
+                            </label>
+                        </div>
                     </div>
-                    <div class="narrow form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="monoambiente" value="option2">
-                        <label class="form-check-label" for="monoambiente">
-                            Monoambiente
-                        </label>
+                    <div><p></p> </div>
+                    <div>
+                        <label for="inputNumPersonas" class="form-label">Número de personas</label>
+                        <input type="number" class="form-control" id="inputNumPersonas" placeholder=2>
                     </div>
-                </div>
-                <div class="narrow"><p></p> </div>
-                <div class="narrow">
-                    <label for="inputNumPersonas" class="form-label">Número de personas</label>
-                    <input type="number" class="form-control" id="inputNumPersonas" placeholder=2>
-                </div>
-                <div class="narrow">
-                    <p id="errorMsg"></p>
-                </div>
-                <div>
-                    <label for="inputFechaIngreso" class="form-label">Fecha de llegada</label>
-                    <input type="date" class="form-control" id="inputFechaIngreso">  
-                </div>
-                <div>
-                    <label for="inputFechaEgreso" class="form-label">Fecha de partida</label>
-                    <input type="date" class="form-control" id="inputFechaEgreso"> 
-                </div>
-                <div class="narrow">
-                    <p id="errorMsgDates"></p>
-                </div>
-                <div class="buttons mb-3 d-grid gap-2 d-flex justify-content-center justify-content-sm-end">
-                    <input class="button btn btn-secondary col-5 col-sm-3 col-lg-3" type="reset" value="Cancelar">
-                    <input class="button btn btn-primary col-5 col-sm-3 col-lg-3" type="submit" value="Reservar">
-                </div>      
+                    <div>
+                        <p id="errorMsg"></p>
+                    </div>
+                    <div>
+                        <label for="inputFechaIngreso" class="form-label">Fecha de llegada</label>
+                        <input type="date" class="form-control" id="inputFechaIngreso">  
+                    </div>
+                    <div>
+                        <label for="inputFechaEgreso" class="form-label">Fecha de partida</label>
+                        <input type="date" class="form-control" id="inputFechaEgreso"> 
+                    </div>
+                    <div>
+                        <p id="errorMsgDates"></p>
+                    </div>
+                    <div class="buttons mb-3 d-grid gap-2 d-flex justify-content-center justify-content-sm-end">
+                        <input class="button btn btn-secondary col-5 col-sm-3 col-lg-3" type="reset" value="Cancelar">
+                        <input class="button btn btn-primary col-5 col-sm-3 col-lg-3" type="submit" value="Reservar">
+                    </div>   
+                </div>   
             </fieldset>         
         </form>
         <p>Además ofrecemos una amplia gama de servicios para hacer tu estadía mas cómoda</p>

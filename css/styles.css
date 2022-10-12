@@ -129,7 +129,6 @@ aside {
   background-attachment: fixed;
 }
 aside div {
-  background-color: rgba(245, 199, 169, 0.168627451);
   height: 100%;
   width: 100%;
   display: flex;
@@ -172,6 +171,7 @@ aside form .buttons .btn-secondary {
 
 #asideForm {
   font-size: 24px;
+  padding: 10px;
 }
 
 main {
@@ -230,6 +230,14 @@ footer #logos img:hover {
   font-weight: 600;
 }
 
+.bg-transparent {
+  background-color: rgba(245, 199, 169, 0.168627451);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-right: 10px;
+}
+
 #contenedorCarrito {
   background-color: #F5C7A9;
   color: #411530;
@@ -274,12 +282,4 @@ footer #logos img:hover {
   font-size: 18px;
   background-color: rgba(65, 21, 48, 0.1294117647);
   padding: 10px;
-}
-
-fieldset div {
-  padding: 10px;
-}
-
-.narrow {
-  padding: 0;
 }/*# sourceMappingURL=styles.css.map */
