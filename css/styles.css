@@ -221,7 +221,7 @@ footer #logos img:hover {
   width: 70px;
 }
 
-#errorMsg, #errorMsgDates {
+#errorMsg, #errorMsgDates, #errorMsgContacto {
   color: rgb(230, 196, 196);
   text-shadow: 0 0 5px red;
 }
@@ -274,4 +274,12 @@ footer #logos img:hover {
   font-size: 18px;
   background-color: rgba(65, 21, 48, 0.1294117647);
   padding: 10px;
+}
+
+fieldset div {
+  padding: 10px;
+}
+
+.narrow {
+  padding: 0;
 }/*# sourceMappingURL=styles.css.map */

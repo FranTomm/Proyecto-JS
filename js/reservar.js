@@ -59,8 +59,15 @@ function validarFormulario(e) {
     let tipo =(monoambiente.checked)?1:2;
     const fechaIngreso = parseDate(fechaEntrada.value)
     const fechaEgreso = parseDate(fechaSalida.value)
+    //chequeo si los datos de contacto fueron completados
+    let DOMerrorMsg=document.getElementById("errorMsgContacto");
+    if(!nombre.value||!apellido.value||!email.value){
+        errorMsg(DOMerrorMsg,"\nPor favor, complete todos los datos de contacto.");
+        return
+    }
+    errorMsg(DOMerrorMsg,"");
     //chequeo si la cantidad de personas no supera la cantidad máxima del alojamiento.
-    let DOMerrorMsg=document.getElementById("errorMsg");
+    DOMerrorMsg=document.getElementById("errorMsg");
     const capacidadMax=[4,6];
     if(cantPersonas.value>capacidadMax[tipo-1]||cantPersonas.value<1){
         errorMsg(DOMerrorMsg,"\nEl número de personas ingresado no es válido.");

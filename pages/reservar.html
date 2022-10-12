@@ -90,30 +90,36 @@
                 <div>
                     <label for="inputEmail" class="form-label">E-mail</label>
                     <input type="email" class="form-control" id="inputEmail" placeholder="email@host.com"> 
+                </div>
+                <div class="narrow">
+                    <p id="errorMsgContacto"></p>
                 </div>                 
             </fieldset> 
             <fieldset class="row">
                 <legend>
                     Datos de la reserva
                 </legend>
-                <legend>Tipo de alojamiento</legend> 
-                <div>
-                    <div class="form-check form-check-inline">
+                <div>Tipo de alojamiento</div> 
+                <div class="narrow">
+                    <div class="narrow form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="gridRadios" id="alpina" value="option1" checked>
                         <label class="form-check-label" for="aplina">
                             Cabaña
                         </label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div class="narrow form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="gridRadios" id="monoambiente" value="option2">
                         <label class="form-check-label" for="monoambiente">
                             Monoambiente
                         </label>
                     </div>
                 </div>
-                <div>
+                <div class="narrow"><p></p> </div>
+                <div class="narrow">
                     <label for="inputNumPersonas" class="form-label">Número de personas</label>
                     <input type="number" class="form-control" id="inputNumPersonas" placeholder=2>
+                </div>
+                <div class="narrow">
                     <p id="errorMsg"></p>
                 </div>
                 <div>
@@ -122,8 +128,10 @@
                 </div>
                 <div>
                     <label for="inputFechaEgreso" class="form-label">Fecha de partida</label>
-                    <input type="date" class="form-control" id="inputFechaEgreso">
-                    <p id="errorMsgDates"></p>   
+                    <input type="date" class="form-control" id="inputFechaEgreso"> 
+                </div>
+                <div class="narrow">
+                    <p id="errorMsgDates"></p>
                 </div>
                 <div class="buttons mb-3 d-grid gap-2 d-flex justify-content-center justify-content-sm-end">
                     <input class="button btn btn-secondary col-5 col-sm-3 col-lg-3" type="reset" value="Cancelar">
