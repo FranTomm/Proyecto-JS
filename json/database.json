@@ -6,7 +6,7 @@
     {"id":5,"nombre":"Desayuno continental","tipoCosto":"variable","valor":1600,"img":"../media/servicios/desayuno_continental.jpg","descripcion":"Un desayuno continental para 1 persona. Se entrega en el alojamiento a partir de las 8hs."},
     {"id":6,"nombre":"Excursión en combi a Pampalinda","tipoCosto":"variable","valor":1000,"img":"../media/servicios/Tronador.jpg","descripcion":"Traslado en combi ida y vuelta desde Bariloche hasta Pampalinda."},
     {"id":7,"nombre":"Alquiler de mountainbike","tipoCosto":"variable","valor":3000,"img":"../media/servicios/mountainbike.jpg","descripcion":"Alquiler diario de una bicicleta tipo mountain bike."},
-    {"id":8,"nombre":"Alquiler de kayak","tipoCosto":"fivariablejo","valor":3000,"img":"../media/servicios/kayak2.jpg","descripcion":"Alquiler diario de equipo de Kayak tipo sit-on-top para una persona."},
+    {"id":8,"nombre":"Alquiler de kayak","tipoCosto":"variable","valor":3000,"img":"../media/servicios/kayak2.jpg","descripcion":"Alquiler diario de equipo de Kayak tipo sit-on-top para una persona."},
     {"id":9,"nombre":"Alquiler de equipo de esquí","tipoCosto":"variable","valor":4000,"img":"../media/servicios/esqui.jpg","descripcion":"Alquiler diario de equipo de esquí para una persona."},
     {"id":10,"nombre":"Alquiler de equipo de snowboard","tipoCosto":"variable","valor":4000,"img":"../media/servicios/snowboard.jpg","descripcion":"Alquiler diario de equipo de snowboard para un persona."},
     {"id":11,"nombre":"Alquiler de ropa para nieve","tipoCosto":"variable","valor":2000,"img":"../media/servicios/ropanieve.jpg","descripcion":"Alquiler diario de ropa para nieve para una persona."},
