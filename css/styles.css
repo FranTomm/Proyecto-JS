@@ -171,7 +171,6 @@ aside form .buttons .btn-secondary {
 
 #asideForm {
   font-size: 24px;
-  padding: 10px;
 }
 
 main {
@@ -232,10 +231,12 @@ footer #logos img:hover {
 
 .bg-transparent {
   background-color: rgba(245, 199, 169, 0.168627451);
+}
+
+.flex-column {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-right: 10px;
 }
 
 #contenedorCarrito {

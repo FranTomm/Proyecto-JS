@@ -67,7 +67,6 @@ aside{
 
 #asideForm{
     font-size:24px;
-    padding: 10px;
 }
 
 main{
@@ -128,10 +127,12 @@ footer{
 
 .bg-transparent{
     background-color: $soft_transparent;
+}
+
+.flex-column{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin-right:10px;
 }
 
 @import "carrito";
