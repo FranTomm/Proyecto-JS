@@ -59,28 +59,38 @@ function validarFormulario(e) {
     let tipo =(monoambiente.checked)?1:2;
     const fechaIngreso = parseDate(fechaEntrada.value)
     const fechaEgreso = parseDate(fechaSalida.value)
+    let validForm=true;
     //chequeo si los datos de contacto fueron completados
     let DOMerrorMsg=document.getElementById("errorMsgContacto");
     if(!nombre.value||!apellido.value||!email.value){
         errorMsg(DOMerrorMsg,"\nPor favor, complete todos los datos de contacto.");
-        return
+        validForm=false;
     }
-    errorMsg(DOMerrorMsg,"");
+    else{
+        errorMsg(DOMerrorMsg,"");
+    }
     //chequeo si la cantidad de personas no supera la cantidad máxima del alojamiento.
     DOMerrorMsg=document.getElementById("errorMsg");
     const capacidadMax=[4,6];
     if(cantPersonas.value>capacidadMax[tipo-1]||cantPersonas.value<1){
         errorMsg(DOMerrorMsg,"\nEl número de personas ingresado no es válido.");
-        return
+        validForm=false;
     }
-    errorMsg(DOMerrorMsg,"");
+    else{
+        errorMsg(DOMerrorMsg,"");
+    }
     //chequeo la validez de las fechas seleccionadas.
     DOMerrorMsg=document.getElementById("errorMsgDates");
     if(!checkValidDates(fechaIngreso,fechaEgreso)){
         errorMsg(DOMerrorMsg,"\nLas fechas de entrada y/o salida ingresadas son inválidas");
+        validForm=false;
+    }
+    else{
+        errorMsg(DOMerrorMsg,"");
+    }
+    if(!validForm){
         return
     }
-    errorMsg(DOMerrorMsg,"");
     //Creo el objeto reserva y lo guardo en el local storage
     reserva1=new Reserva(nombre.value,apellido.value,email.value,tipo,fechaIngreso,fechaEgreso,cantPersonas.value)
     guardarItem(reserva1,"reserva1");
